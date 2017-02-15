@@ -10,7 +10,7 @@
  * @brief Créer une CellB
  */
 
-class CellB
+class CellB : Individu
 {
 public:
 //==============================
