@@ -4,6 +4,8 @@
 #include "Case.h"
 #include <cstdio>
 #include <cstdlib>
+#include "Environnement.h"
+
 
 
 //==============================
@@ -11,22 +13,20 @@
 //==============================
 Environnement::Environnement()
 {
-	grille = new Case[32][32];
+	grille = new grille[32][32];
 	fitness_min = 0.01;
 }
 
-Environnement::Environnement(int x, int y)
+Environnement::Environnement(const int x, const int y)
 {
-	grille = new Case[x][y];
+	grille = new grille[x][y];
 	fitness_min= 0.01;
 }
 
 //==============================
 //    DESTRUCTOR
 //==============================
-Character::~Character(){
-	
-}
+
 
 //==============================
 //    PUBLIC METHODS

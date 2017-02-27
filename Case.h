@@ -5,6 +5,9 @@
 //    INCLUDES
 //==============================
 
+#include "Individu.h"
+
+
 /**
  * @class Case
  * @brief Creates a Case

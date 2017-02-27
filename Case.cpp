@@ -28,6 +28,6 @@ Case::~Case(){
 //    PUBLIC METHODS
 //==============================
 
-Case::Conc_A(){
+float Case::conc_A(){
 	return conc_ext[0];
 }	

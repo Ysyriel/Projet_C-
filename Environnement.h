@@ -17,7 +17,7 @@ public:
 //    CONSTRUCTORS
 //==============================
   Environnement(); //Constructeur par defaut
-  Environnement(int x, int y); //Constructeur taille
+  Environnement(const int x,const int y); //Constructeur taille
 
 //==============================
 //    DESTRUCTOR
