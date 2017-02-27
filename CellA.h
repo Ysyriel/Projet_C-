@@ -5,6 +5,7 @@
 //    INCLUDES
 //==============================
 #include <stdio.h>
+#include "Individu.h"
 /**
  * @class CellA
  * @brief Créer une CellA
