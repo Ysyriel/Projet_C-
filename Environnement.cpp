@@ -9,12 +9,16 @@
 //==============================
 //    CONSTRUCTORS
 //==============================
-Case::Case()
+Environnement::Environnement()
 {
-	cellule = NULL;
-	conc_ext[0] = (rand()/(double)RAND_MAX) * 50;
-	conc_ext[1] = 0;
-	conc_ext[2] = 0;
+	grille = new Case[32][32];
+	fitness_min = 0.01;
+}
+
+Environnement::Environnement(int x, int y)
+{
+	grille = new Case[x][y];
+	fitness_min= 0.01;
 }
 
 //==============================
