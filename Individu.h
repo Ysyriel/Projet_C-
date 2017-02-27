@@ -1,5 +1,5 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H 
+#ifndef INDIVIDU_H
+#define INDIVIDU_H 
 
 //==============================
 //    INCLUDES
@@ -10,7 +10,7 @@
  * @brief Crée un Individu
  */
 
-class Character
+class Individu
 {
 public:
 //==============================
@@ -68,4 +68,4 @@ protected:
 //==============================
 
 
-#endif // CHARACTER_H
+#endif // INDIVIDU_H
