@@ -4,9 +4,13 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
+using namespace std;
+
 
 #include "CellA.h"
 #include "CellB.h"
+#include "Case.h"
 #include "Individu.h"
 #include "Environnement.h"
 
@@ -18,7 +22,9 @@
 //    MAIN
 //==============================
 
-int main(int argc, char const *argv[])
+int main()
 {
-  return 0;
+	Case Test;
+	cout << "Valeur de concentrations :" << Test.conc_A() << endl;
+	return 0;
 }

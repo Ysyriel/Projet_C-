@@ -20,10 +20,14 @@ Case::Case()
 //==============================
 //    DESTRUCTOR
 //==============================
-Character::~Character(){
+Case::~Case(){
 	
 }
 
 //==============================
 //    PUBLIC METHODS
 //==============================
+
+Case::Conc_A(){
+	return conc_ext[0];
+}	

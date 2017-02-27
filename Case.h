@@ -26,6 +26,7 @@ public:
 //==============================
 //    GETTERS
 //==============================
+	float conc_A(); //Renvoie la concentration A
 
 //==============================
 //    SETTERS
