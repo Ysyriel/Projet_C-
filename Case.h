@@ -30,10 +30,16 @@ public:
 //    GETTERS
 //==============================
 	float conc_A(); //Renvoie la concentration A
+	float conc_B();
+	float conc_C();
 
 //==============================
 //    SETTERS
 //==============================
+
+	void set_concA(float A);
+	void set_concB(float B);
+	void set_concC(float C);
 
 //==============================
 //    OPERATORS
@@ -43,6 +49,7 @@ public:
 //    PUBLIC METHODS
 //==============================
   void metabol_ext();
+  void mort(float p);
 
 protected:
 //==============================

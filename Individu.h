@@ -24,11 +24,17 @@ public:
 //==============================
 //    GETTERS
 //==============================
+	float phenotype_A(); //Renvoie la concentration A
+	float phenotype_B();
+	float phenotype_C();
 
 //==============================
 //    SETTERS
 //==============================
-
+	void set_phenotypeA(float A);
+	void set_phenotypeB(float B);
+	void set_phenotypeC(float C);
+	
 //==============================
 //    OPERATORS
 //==============================

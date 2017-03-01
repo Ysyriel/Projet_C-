@@ -40,6 +40,9 @@ public:
 //    PUBLIC METHODS
 //==============================
 
+	void Diffusion(int D); //Diffusion des concentrations
+	void Reinitialisation(); //Reinitialise la grille
+
 protected:
 //==============================
 //    PROTECTED METHODS
