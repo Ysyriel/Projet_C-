@@ -52,6 +52,9 @@ float Case::conc_C(){
 	return conc_ext[2];
 }
 
+Individu* Case::get_cellule(){
+	return cellule;
+}
 
 //==============================
 //    SETTERS
@@ -72,4 +75,7 @@ void Case::set_concC(float C){
 		conc_ext[2] =  C;
 }
 
+void Case::set_cellule(Individu I){
+	*cellule = I;
+}
 	

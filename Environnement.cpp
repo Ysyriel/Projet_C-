@@ -1,21 +1,30 @@
 //==============================
 //    INCLUDES
 //==============================
-#include "Case.h"
 #include <cstdio>
 #include <cstdlib>
+#include <time.h>
 #include "Environnement.h"
+#include "Case.h"
+#include "CellA.h"
+#include "CellB.h"
+#include "Individu.h"
 
 
+int generer_alea(int min, int max)
+{
+  srand(time(NULL));
+  return rand()%(max-min+1)+ min;
+}
 
 //==============================
 //    CONSTRUCTORS
 //==============================
 Environnement::Environnement()
 {
-	Case** grille = new Case*[32];
-	for(int i = 0; i<32; i++)
-		grille[i] = new Case[32];
+  Case** grille = new Case*[32];
+  for(int i = 0; i<32; i++)
+  	grille[i] = new Case[32];
 	fitness_min = 0.01;
 	
 	
@@ -40,14 +49,32 @@ Environnement::Environnement()
 
 }
 
-Environnement::Environnement(const int x,const int y)
+Environnement::Environnement(const int w,const int h)
 {
-	Case** grille = new Case*[x];
-	for(int i = 0; i<x; i++)
-		grille[i] = new Case[y];
+	Case** grille = new Case*[w];
+	for(int i = 0; i<w; i++)
+		grille[i] = new Case[h];
 	fitness_min= 0.01;
+	
+	for(int i=0; i<(w+h)/2; i++)
+	{
+		int x=generer_alea(0,w);
+		int y=generer_alea(0,h);
+		
+		if (grille[x][y].get_cellule() == NULL)
+		{
+			grille[x][y].set_cellule(new CellA());
+		}
+		else i--;
+	}
+	/**
+	for(x=0, x<w; x++)
+	{
+		for(y=0, y<h; y++)
+		{
+			grille[x][y].get_cellule() = new CellB();
+*/
 }
-
 //==============================
 //    DESTRUCTOR
 //==============================

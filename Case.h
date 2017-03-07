@@ -19,12 +19,12 @@ public:
 //==============================
 //    CONSTRUCTORS
 //==============================
-  Case();
+	Case();
 
 //==============================
 //    DESTRUCTOR
 //==============================
-  virtual ~Case();
+	virtual ~Case();
 
 //==============================
 //    GETTERS
@@ -32,6 +32,7 @@ public:
 	float conc_A() const; //Renvoie la concentration A
 	float conc_B();
 	float conc_C();
+	Individu* get_cellule();
 
 //==============================
 //    SETTERS
@@ -40,6 +41,7 @@ public:
 	void set_concA(float A);
 	void set_concB(float B);
 	void set_concC(float C);
+	void set_cellule(Individu I);
 
 //==============================
 //    OPERATORS
@@ -48,8 +50,8 @@ public:
 //==============================
 //    PUBLIC METHODS
 //==============================
-  void metabol_ext();
-  void mort(float p);
+	void metabol_ext();
+	void mort(float p);
 
 protected:
 //==============================
@@ -65,19 +67,5 @@ protected:
 	//float position[2];
 
 };
-
-//==============================
-//    GETTER DEFINITION
-//==============================
-
-
-//==============================
-//    SETTER DEFINITION
-//==============================
-
-//==============================
-//    OPERATOR DEFINITION
-//==============================
-
 
 #endif // CASE_H
