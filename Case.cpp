@@ -40,7 +40,7 @@ void Case::mort(float p){
 //    GETTERS
 //==============================
 
-float Case::conc_A() constO{
+float Case::conc_A(){
 	return conc_ext[0];
 }
 
@@ -75,7 +75,7 @@ void Case::set_concC(float C){
 		conc_ext[2] =  C;
 }
 
-void Case::set_cellule(Individu I){
-	*cellule = I;
+void Case::set_cellule(Individu* I){
+	cellule = I;
 }
 	

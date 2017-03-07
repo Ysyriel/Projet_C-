@@ -29,7 +29,7 @@ public:
 //==============================
 //    GETTERS
 //==============================
-	float conc_A() const; //Renvoie la concentration A
+	float conc_A(); //Renvoie la concentration A
 	float conc_B();
 	float conc_C();
 	Individu* get_cellule();
@@ -41,7 +41,7 @@ public:
 	void set_concA(float A);
 	void set_concB(float B);
 	void set_concC(float C);
-	void set_cellule(Individu I);
+	void set_cellule(Individu* I);
 
 //==============================
 //    OPERATORS

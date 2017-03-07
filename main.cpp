@@ -5,7 +5,9 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 
 #include "CellA.h"
@@ -24,7 +26,22 @@ using namespace std;
 
 int main()
 {
-	Case Test;
-	cout << "Valeur de concentrations :" << Test.conc_A() << endl;
+	Environnement Envir;
+	
+	
+	
+	
+	
+	
+	/**
+	Environnement Env;
+	for (int i = 0 ; i<32 ; i++){
+		for (int j = 0 ; j<32 ; j++){
+			cout << "Concentrations en Case (" << i << ","<< j << ") :"<< Env.grille[i][j].conc_ext[0] << "\n" << endl;
+		}
+	}
+	*/
+	
+	
 	return 0;
 }
