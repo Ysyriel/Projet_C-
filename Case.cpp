@@ -40,7 +40,7 @@ void Case::mort(float p){
 //    GETTERS
 //==============================
 
-float Case::conc_A(){
+float Case::conc_A() constO{
 	return conc_ext[0];
 }
 

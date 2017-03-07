@@ -29,7 +29,7 @@ public:
 //==============================
 //    GETTERS
 //==============================
-	float conc_A(); //Renvoie la concentration A
+	float conc_A() const; //Renvoie la concentration A
 	float conc_B();
 	float conc_C();
 
