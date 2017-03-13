@@ -18,7 +18,7 @@ public:
 //    CONSTRUCTORS
 //==============================
   Environnement(); //Constructeur par defaut
-  Environnement(const int x,const int y); //Constructeur taille
+  Environnement(const int x,const int y, float A_init); //Constructeur taille
 
 //==============================
 //    DESTRUCTOR
@@ -28,6 +28,8 @@ public:
 //==============================
 //    GETTERS
 //==============================
+	int get_largeur();
+	int get_hauteur();
 
 //==============================
 //    SETTERS
@@ -43,6 +45,7 @@ public:
 
 	void Diffusion(int D); //Diffusion des concentrations
 	void Reinitialisation(); //Reinitialise la grille
+	void Competition();
 
 protected:
 //==============================
@@ -54,7 +57,10 @@ protected:
 //==============================
 
 	Case** grille;
+	float Ainit;
 	float fitness_min;
+	int largeur;
+	int hauteur;
 
 };
 

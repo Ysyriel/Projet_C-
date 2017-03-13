@@ -10,10 +10,14 @@
 #include "CellB.h"
 #include "Individu.h"
 
+#include <vector>
+#include <algorithm>
 #include <iostream>
 using std::cout;
 using std::cin;
 using std::endl;
+
+using namespace std;
 
 
 int generer_alea(int min, int max)
@@ -25,16 +29,20 @@ int generer_alea(int min, int max)
 //==============================
 //    CONSTRUCTORS
 //==============================
-Environnement::Environnement()
+Environnement::Environnement() //Constructeur par défaut
 {
-  Case** grille = new Case*[32];
+	Ainit = generer_alea(1,50);
+	largeur = 32;
+	hauteur = 32;
+	
+  Case** grille = new Case*[32]; //Cree la grille des cases
   for(int i = 0; i<32; i++)
   	grille[i] = new Case[32];
 	fitness_min = 0.01;
 	
 	
 	
-	for(int i=0; i<(32*32)/2; i++)
+	for(int i=0; i<(32*32)/2; i++) //Remplit la grille de cellules
 	{
 		int x=generer_alea(0,32);
 		int y=generer_alea(0,32);
@@ -50,6 +58,7 @@ Environnement::Environnement()
 	{
 		for(int y=0; y<32; y++)
 		{
+			grille[x][y].set_concA(Ainit); //Met la concentration initiale de A dans chaque case
 			if (grille[x][y].get_cellule() == NULL)
 			{
 				CellB* B = new CellB();
@@ -60,8 +69,11 @@ Environnement::Environnement()
 
 }
 
-Environnement::Environnement(const int w,const int h)
+Environnement::Environnement(const int w,const int h, float A_init)
 {
+	Ainit = A_init;
+	largeur = w;
+	hauteur = h;
 	Case** grille = new Case*[w];
 	for(int i = 0; i<w; i++)
 		grille[i] = new Case[h];
@@ -83,6 +95,7 @@ Environnement::Environnement(const int w,const int h)
 	{
 		for(int y=0; y<h; y++)
 		{
+			grille[x][y].set_concA(Ainit); //Met la concentration initiale de A dans chaque case
 			if (grille[x][y].get_cellule() == NULL)
 			{
 				CellB* B = new CellB();
@@ -99,6 +112,19 @@ Environnement::Environnement(const int w,const int h)
 
 Environnement::~Environnement(){
 	
+}
+
+
+//==============================
+//    GETTERS
+//==============================
+
+int Environnement::get_largeur(){
+	return largeur;
+}
+
+int Environnement::get_hauteur(){
+	return hauteur;
 }
 
 
@@ -137,6 +163,23 @@ void Environnement::Reinitialisation(){
 			grille[x][y].set_concC(0);
 		}
 	}
+}
+
+
+void Environnement::Competition(){
+	vector<Case*> gaps;
+	for (int x = 0 ; x < get_largeur() ; x++){ //Remplit un vector de pointeur des cases vides
+		for (int y = 0 ; y < get_hauteur() ; y++){
+			if (grille[x][y].get_cellule() == NULL){
+				gaps.push_back(&grille[x][y]);
+			}
+		}
+	}
+	random_shuffle (gaps.begin(), gaps.end()); //Range aleatoirement le vector
+	
+	
+	
+	
 }
 
 

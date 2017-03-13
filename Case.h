@@ -33,6 +33,8 @@ public:
 	float conc_B();
 	float conc_C();
 	Individu* get_cellule();
+	int get_x();
+	int get_y();
 
 //==============================
 //    SETTERS
@@ -64,7 +66,8 @@ protected:
 
 	Individu* cellule;
 	float conc_ext[3];
-	//float position[2];
+	int coord_x;
+	int coord_y;
 
 };
 

@@ -27,6 +27,7 @@ public:
 	float phenotype_A(); //Renvoie la concentration A
 	float phenotype_B();
 	float phenotype_C();
+	char type();
 
 //==============================
 //    SETTERS

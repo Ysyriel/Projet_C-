@@ -34,6 +34,10 @@ float Individu::phenotype_C(){
 	return phenotype[2];
 }
 
+char Individu::type(){
+	return genotype;
+}
+
 //==============================
 //    SETTERS
 //==============================
