@@ -3,7 +3,7 @@
 //==============================
 #include <cstdio>
 #include <cstdlib>
-#include <time.h>
+#include <ctime>
 #include "Environnement.h"
 #include "Case.h"
 #include "CellA.h"
@@ -20,9 +20,9 @@ using std::endl;
 using namespace std;
 
 
-int generer_alea(int min, int max)
+int generer_alea(int a, int b)
 {
-  return (rand()%(max-min+1)+ min);
+	return rand()%(b-a) +a;
 }
 
 //==============================
@@ -30,7 +30,6 @@ int generer_alea(int min, int max)
 //==============================
 Environnement::Environnement() //Constructeur par défaut
 {
-	srand(time(0));
 	Ainit = generer_alea(1,50);
 	largeur = 32;
 	hauteur = 32;
@@ -47,13 +46,15 @@ Environnement::Environnement() //Constructeur par défaut
 		int x=generer_alea(0,32);
 		int y=generer_alea(0,32);
 		
-		if (grille[x][y].get_cellule() == nullptr)
+		if (grille[x][y].test_cellule() == false)
 		{
 			CellA* A = new CellA();
 			grille[x][y].set_cellule(A);
 		}
 		else i--;
 	}
+	
+	
 	for(int x=0; x<32; x++)
 	{
 		for(int y=0; y<32; y++)
@@ -61,7 +62,7 @@ Environnement::Environnement() //Constructeur par défaut
 			grille[x][y].set_concA(Ainit); //Met la concentration initiale de A dans chaque case
 			grille[x][y].set_x(x); //Donne les attributs de coordonnes aux cases
 			grille[x][y].set_y(y);
-			if (grille[x][y].get_cellule() == nullptr)
+			if (grille[x][y].test_cellule() == false)
 			{
 				CellB* B = new CellB();
 				grille[x][y].set_cellule(B);
