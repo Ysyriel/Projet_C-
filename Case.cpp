@@ -11,7 +11,7 @@
 //==============================
 Case::Case()
 {
-	cellule = NULL;
+	cellule = nullptr;
 	conc_ext[0] = 0;
 	conc_ext[1] = 0;
 	conc_ext[2] = 0;
@@ -36,6 +36,13 @@ void Case::mort(float p){
 		set_concC(conc_C()+cellule -> phenotype_C());
 		delete(cellule);
 	}
+}
+
+bool Case::test_cellule(){
+	if (cellule == nullptr){
+		return false;
+	}
+	else return true;
 }
 
 
@@ -89,4 +96,11 @@ void Case::set_concC(float C){
 void Case::set_cellule(Individu* I){
 	cellule = I;
 }
-	
+
+void Case::set_x(int x){
+	coord_x = x;
+}
+
+void Case::set_y(int y){
+	coord_y = y;
+}

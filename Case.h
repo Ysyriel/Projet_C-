@@ -44,6 +44,8 @@ public:
 	void set_concB(float B);
 	void set_concC(float C);
 	void set_cellule(Individu* I);
+	void set_x(int x);
+	void set_y(int y);
 
 //==============================
 //    OPERATORS
@@ -54,6 +56,7 @@ public:
 //==============================
 	void metabol_ext();
 	void mort(float p);
+	bool test_cellule();
 
 protected:
 //==============================

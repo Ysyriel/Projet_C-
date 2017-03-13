@@ -22,8 +22,7 @@ using namespace std;
 
 int generer_alea(int min, int max)
 {
-  srand(time(NULL));
-  return rand()%(max-min+1)+ min;
+  return (rand()%(max-min+1)+ min);
 }
 
 //==============================
@@ -31,6 +30,7 @@ int generer_alea(int min, int max)
 //==============================
 Environnement::Environnement() //Constructeur par défaut
 {
+	srand(time(0));
 	Ainit = generer_alea(1,50);
 	largeur = 32;
 	hauteur = 32;
@@ -47,7 +47,7 @@ Environnement::Environnement() //Constructeur par défaut
 		int x=generer_alea(0,32);
 		int y=generer_alea(0,32);
 		
-		if (grille[x][y].get_cellule() == NULL)
+		if (grille[x][y].get_cellule() == nullptr)
 		{
 			CellA* A = new CellA();
 			grille[x][y].set_cellule(A);
@@ -59,13 +59,17 @@ Environnement::Environnement() //Constructeur par défaut
 		for(int y=0; y<32; y++)
 		{
 			grille[x][y].set_concA(Ainit); //Met la concentration initiale de A dans chaque case
-			if (grille[x][y].get_cellule() == NULL)
+			grille[x][y].set_x(x); //Donne les attributs de coordonnes aux cases
+			grille[x][y].set_y(y);
+			if (grille[x][y].get_cellule() == nullptr)
 			{
 				CellB* B = new CellB();
 				grille[x][y].set_cellule(B);
 			}	
 		}
 	}
+	
+	
 
 }
 
@@ -84,7 +88,7 @@ Environnement::Environnement(const int w,const int h, float A_init)
 		int x=generer_alea(0,w);
 		int y=generer_alea(0,h);
 		
-		if (grille[x][y].get_cellule() == NULL)
+		if (grille[x][y].get_cellule() == nullptr)
 		{
 			CellA* A = new CellA();
 			grille[x][y].set_cellule(A);
@@ -96,7 +100,7 @@ Environnement::Environnement(const int w,const int h, float A_init)
 		for(int y=0; y<h; y++)
 		{
 			grille[x][y].set_concA(Ainit); //Met la concentration initiale de A dans chaque case
-			if (grille[x][y].get_cellule() == NULL)
+			if (grille[x][y].get_cellule() == nullptr)
 			{
 				CellB* B = new CellB();
 				grille[x][y].set_cellule(B);
@@ -158,7 +162,7 @@ void Environnement::Diffusion(int D){
 void Environnement::Reinitialisation(){
 	for (int x = 0 ; x < 32 ; x++){
 		for (int y = 0 ; y < 32 ; y++){
-			grille[x][y].set_concA((rand()/(float)RAND_MAX) * 50);
+			grille[x][y].set_concA(Ainit);
 			grille[x][y].set_concB(0);
 			grille[x][y].set_concC(0);
 		}
