@@ -40,6 +40,7 @@ Environnement::Environnement() //Constructeur par défaut
   for(int i = 0; i<32; i++)
   	grille[i] = new Case[32];
 	fitness_min = 0.01;
+	r = 0.1;
 	
 	
 	
@@ -86,6 +87,7 @@ Environnement::Environnement(const int w,const int h, float A_init, float fit_mi
 	for(int i = 0; i<w; i++)
 		grille[i] = new Case[h];
 	fitness_min = fit_min;
+	r = 0.1;
 	
 	for(int i=0; i<(w*h)/2; i++)
 	{
