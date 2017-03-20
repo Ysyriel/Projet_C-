@@ -3,7 +3,7 @@
 //==============================
 #include <cstdio>
 #include <cstdlib>
-#include <ctime>
+#include <time.h>
 #include "Environnement.h"
 #include "Case.h"
 #include "CellA.h"
@@ -22,9 +22,9 @@ using std::endl;
 using namespace std;
 
 
-int generer_alea(int a, int b)
+int generer_alea(int min, int max)
 {
-	return rand()%(b-a) +a;
+	return (min+(rand()%(max-min+1)));
 }
 
 //==============================
@@ -32,6 +32,7 @@ int generer_alea(int a, int b)
 //==============================
 Environnement::Environnement() //Constructeur par défaut
 {
+	srand (time (NULL)); 
 	Ainit = generer_alea(1,50);
 	largeur = 32;
 	hauteur = 32;
@@ -73,9 +74,6 @@ Environnement::Environnement() //Constructeur par défaut
 			
 		}
 	}
-	
-	
-
 }
 
 Environnement::Environnement(const int w,const int h, float A_init, float fit_min)
