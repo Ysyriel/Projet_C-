@@ -142,6 +142,19 @@ int Environnement::get_hauteur(){
 //    PUBLIC METHODS
 //==============================
 
+
+void Environnement::metabol_all(){
+	for (int x = 0 ; x < largeur ; x++){
+		for (int y = 0 ; y < hauteur ; y++){
+			grille[x][y].metabolisme(r, 0.1);
+			
+		}
+	}
+	
+}
+
+
+
 void Environnement::Diffusion(int D){
 	
 	for (int x = 0 ; x < 32 ; x++){

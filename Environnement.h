@@ -50,6 +50,7 @@ public:
 	void AffichA();
 	void AffichB();
 	void AffichC();
+	void metabol_all();
 
 protected:
 //==============================

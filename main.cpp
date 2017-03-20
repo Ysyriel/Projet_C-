@@ -34,6 +34,22 @@ int main()
 	Envir.AffichB();
 	cout << endl;
 	Envir.AffichC();
+	cout << endl;
+	
+	Envir.metabol_all();
+	Envir.AffichA();
+	cout << endl;
+	Envir.metabol_all();
+	Envir.AffichA();
+	cout << endl;
+	Envir.metabol_all();
+	Envir.AffichA();
+	cout << endl;
+	Envir.metabol_all();
+	Envir.AffichA();
+	cout << endl;
+	
+
 	
 	
 	

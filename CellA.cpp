@@ -34,6 +34,11 @@ CellA::~CellA(){
 //==============================
 
 void CellA::metabol_in(float R, float dt, float conc_out){
-	phenotype[0] = phenotype[0] + dt * (conc_out * R - phenotype[0] * R);
+	float Aout = conc_out * R;
+	phenotype[0] = phenotype[0] + dt * (Aout - phenotype[0] * R);
 	phenotype[1] = phenotype[1] + dt * (phenotype[0] * R);
+}
+
+void CellA::maj_fitness(){
+	fitness = phenotype[1];
 }

@@ -13,7 +13,7 @@ Case::Case()
 {
 	cellule = nullptr;
 	conc_ext[0] = 0;
-	conc_ext[1] = 0;
+	conc_ext[1] = 20;
 	conc_ext[2] = 0;
 }
 
@@ -38,14 +38,14 @@ void Case::mort(float p){
 	}
 }
 
-void Case::Metabolisme(float R, float dt){ //Metabolisme des cellules
+void Case::metabolisme(float R, float dt){ //Metabolisme des cellules
 	if (cellule->type() == 'a'){
-		set_concA(conc_ext[0] + dt * (-conc_ext[0] * R));
 		cellule->metabol_in(R, dt, conc_ext[0]);
-	}
+		set_concA(conc_ext[0] + dt * (-conc_ext[0] * R));
+	} 
 	if (cellule->type() == 'b'){
-		set_concB(conc_ext[1] + dt * (-conc_ext[1] * R));
 		cellule->metabol_in(R, dt, conc_ext[1]);
+		set_concB(conc_ext[1] + dt * (-conc_ext[1] * R));
 	}
 	
 }
