@@ -62,7 +62,7 @@ protected:
 	float fitness_min;
 	int largeur;
 	int hauteur;
-	float r const;
+	float r;
 };
 
 //==============================
