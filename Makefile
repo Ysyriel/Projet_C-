@@ -20,8 +20,8 @@ CellB.o: CellB.cpp CellB.h
 Case.o: Case.cpp Case.h 
 	g++ $(CFLAGS) -c Case.cpp -o Case.o	
 	
-Environnement.o: Environnement.cpp Environnement.h 
-	g++ $(CFLAGS) -c Environnement.cpp -o Environnement.o	
+Environnement.o: Environnement.cpp Environnement.h couleurs.h
+	g++ $(CFLAGS) -c Environnement.cpp -o Environnement.o 
 		
 clean:
 	rm -f *.o

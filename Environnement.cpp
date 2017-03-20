@@ -9,6 +9,8 @@
 #include "CellA.h"
 #include "CellB.h"
 #include "Individu.h"
+#include "couleurs.h"
+#include "stdio.h"
 
 #include <vector>
 #include <algorithm>
@@ -172,6 +174,27 @@ void Environnement::Reinitialisation(){
 		}
 	}
 }
+
+
+void Environnement::Affichagrille(){
+	for (int j = 0 ; j < get_hauteur() ; j++){
+		for (int i = 0 ; i < get_largeur() ; i++){
+			if (grille[i][j].get_cellule()->type() == 'a'){
+			couleur("31");
+			printf("A ");
+			}
+			else
+			{
+			couleur("36");
+			printf("B ");
+			}
+		}
+		cout <<  endl;
+	}
+	
+	couleur("0");
+}
+
 
 /*
 void Environnement::Competition(){

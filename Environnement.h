@@ -46,6 +46,7 @@ public:
 	void Diffusion(int D); //Diffusion des concentrations
 	void Reinitialisation(); //Reinitialise la grille
 	void Competition();
+	void Affichagrille();
 
 protected:
 //==============================
