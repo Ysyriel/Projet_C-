@@ -27,7 +27,6 @@ using std::endl;
 int main()
 {
 	Environnement Envir;
-	Envir.Competition();
 	
 	
 	

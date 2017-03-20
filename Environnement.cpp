@@ -34,17 +34,17 @@ Environnement::Environnement() //Constructeur par défaut
 	largeur = 32;
 	hauteur = 32;
 	
-  Case** grille = new Case*[32]; //Cree la grille des cases
+  grille = new Case*[32]; //Cree la grille des cases
   for(int i = 0; i<32; i++)
   	grille[i] = new Case[32];
 	fitness_min = 0.01;
 	
 	
 	
-	for(int i=0; i<(32*32)/2; i++) //Remplit la grille de cellules
+	for(int i=0; i<(32*32)/2; i++) //Remplit la grille de cellules A
 	{
-		int x=generer_alea(0,32);
-		int y=generer_alea(0,32);
+		int x=generer_alea(0,31);
+		int y=generer_alea(0,31);
 		
 		if (grille[x][y].test_cellule() == false)
 		{
@@ -55,7 +55,7 @@ Environnement::Environnement() //Constructeur par défaut
 	}
 	
 	
-	for(int x=0; x<32; x++)
+	for(int x=0; x<32; x++) //Remplit la grille de cellules B
 	{
 		for(int y=0; y<32; y++)
 		{
@@ -67,6 +67,7 @@ Environnement::Environnement() //Constructeur par défaut
 				CellB* B = new CellB();
 				grille[x][y].set_cellule(B);
 			}	
+			
 		}
 	}
 	
@@ -74,15 +75,15 @@ Environnement::Environnement() //Constructeur par défaut
 
 }
 
-Environnement::Environnement(const int w,const int h, float A_init)
+Environnement::Environnement(const int w,const int h, float A_init, float fit_min)
 {
 	Ainit = A_init;
 	largeur = w;
 	hauteur = h;
-	Case** grille = new Case*[w];
+	grille = new Case*[w];
 	for(int i = 0; i<w; i++)
 		grille[i] = new Case[h];
-	fitness_min= 0.01;
+	fitness_min = fit_min;
 	
 	for(int i=0; i<(w*h)/2; i++)
 	{
@@ -111,6 +112,8 @@ Environnement::Environnement(const int w,const int h, float A_init)
 
 
 }
+
+
 //==============================
 //    DESTRUCTOR
 //==============================
@@ -170,7 +173,7 @@ void Environnement::Reinitialisation(){
 	}
 }
 
-
+/*
 void Environnement::Competition(){
 	vector<Case*> gaps;
 	for (int x = 0 ; x < get_largeur() ; x++){ //Remplit un vector de pointeur des cases vides
@@ -187,4 +190,4 @@ void Environnement::Competition(){
 	
 }
 
-
+*/
