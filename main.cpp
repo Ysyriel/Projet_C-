@@ -28,6 +28,12 @@ int main()
 {
 	Environnement Envir;
 	Envir.Affichagrille();
+	cout << endl;
+	Envir.AffichA();
+	cout << endl;
+	Envir.AffichB();
+	cout << endl;
+	Envir.AffichC();
 	
 	
 	

@@ -195,6 +195,34 @@ void Environnement::Affichagrille(){
 	couleur("0");
 }
 
+void Environnement::AffichA(){
+	for (int j = 0 ; j < get_hauteur() ; j++){
+		for (int i = 0 ; i < get_largeur() ; i++){
+			cout << grille[i][j].conc_A() << " " ;
+			}
+		cout <<  endl;
+		}
+}
+
+void Environnement::AffichB(){
+	for (int j = 0 ; j < get_hauteur() ; j++){
+		for (int i = 0 ; i < get_largeur() ; i++){
+			cout << grille[i][j].conc_B() << " " ;
+			}
+		cout <<  endl;
+		}
+}
+
+void Environnement::AffichC(){
+	for (int j = 0 ; j < get_hauteur() ; j++){
+		for (int i = 0 ; i < get_largeur() ; i++){
+			cout << grille[i][j].conc_C() << " " ;
+			}
+		cout <<  endl;
+		}
+}
+
+
 
 /*
 void Environnement::Competition(){

@@ -47,6 +47,9 @@ public:
 	void Reinitialisation(); //Reinitialise la grille
 	void Competition();
 	void Affichagrille();
+	void AffichA();
+	void AffichB();
+	void AffichC();
 
 protected:
 //==============================
