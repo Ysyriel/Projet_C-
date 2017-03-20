@@ -4,6 +4,21 @@
 #include "Case.h"
 #include <cstdio>
 #include <cstdlib>
+#include <time.h>
+
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+
+using namespace std;
+
+
+
+float generer_aleafloat(int min, int max)
+{
+	return (min + (rand()/(double)RAND_MAX)*(max-min));
+}
 
 
 //==============================
@@ -21,20 +36,22 @@ Case::Case()
 //    DESTRUCTOR
 //==============================
 Case::~Case(){
-	delete(cellule);
+	delete cellule;
 }
 
 //==============================
 //    PUBLIC METHODS
 //==============================
 
+
 void Case::mort(float p){
-	float r = (rand()/(float)RAND_MAX); //Genere un float aleatoire entre 0 et 1
+	float r = generer_aleafloat(0,1); 
 	if (r<p){
 		set_concA(conc_A()+cellule -> phenotype_A());
 		set_concB(conc_B()+cellule -> phenotype_B());
 		set_concC(conc_C()+cellule -> phenotype_C());
-		delete(cellule);
+		delete cellule;
+		cellule = nullptr;
 	}
 }
 

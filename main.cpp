@@ -26,15 +26,18 @@ using std::endl;
 
 int main()
 {
-	Environnement Envir;
+	Environnement Test;
+	Environnement Envir(4,4,25,0.2);
 	Envir.Affichagrille();
 	cout << endl;
-	Envir.AffichA();
+	Envir.Affichconc();
+	Envir.Run();
+	Envir.Affichagrille();
 	cout << endl;
-	Envir.AffichB();
-	cout << endl;
-	Envir.AffichC();
+	Envir.Affichconc();
+
 	
+
 	
 	
 	/**
