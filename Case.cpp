@@ -21,7 +21,7 @@ Case::Case()
 //    DESTRUCTOR
 //==============================
 Case::~Case(){
-	
+	delete(cellule);
 }
 
 //==============================
@@ -36,6 +36,18 @@ void Case::mort(float p){
 		set_concC(conc_C()+cellule -> phenotype_C());
 		delete(cellule);
 	}
+}
+
+void Case::Metabolisme(float R, float dt){ //Metabolisme des cellules
+	if (cellule->type() == 'a'){
+		set_concA(conc_ext[0] + dt * (-conc_ext[0] * R));
+		cellule->metabol_in(R, dt, conc_ext[0]);
+	}
+	if (cellule->type() == 'b'){
+		set_concB(conc_ext[1] + dt * (-conc_ext[1] * R));
+		cellule->metabol_in(R, dt, conc_ext[1]);
+	}
+	
 }
 
 bool Case::test_cellule(){

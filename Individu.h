@@ -20,6 +20,7 @@ public:
 //==============================
 //    DESTRUCTOR
 //==============================
+	virtual ~Individu();
 
 //==============================
 //    GETTERS
@@ -43,6 +44,8 @@ public:
 //==============================
 //    PUBLIC METHODS
 //==============================
+	virtual void metabol_in(float R, float dt, float conc_out) = 0;
+	
 
 protected:
 //==============================
