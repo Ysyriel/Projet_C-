@@ -22,7 +22,7 @@ using std::endl;
 using namespace std;
 
 
-int generer_alea(int min, int max)
+int generer_aleaint(int min, int max)
 {
 	return (min+(rand()%(max-min+1)));
 }
@@ -33,7 +33,7 @@ int generer_alea(int min, int max)
 Environnement::Environnement() //Constructeur par défaut
 {
 	srand (time (NULL)); 
-	Ainit = generer_alea(1,50);
+	Ainit = generer_aleaint(1,50);
 	largeur = 32;
 	hauteur = 32;
 	
@@ -47,8 +47,8 @@ Environnement::Environnement() //Constructeur par défaut
 	
 	for(int i=0; i<(32*32)/2; i++) //Remplit la grille de cellules A
 	{
-		int x=generer_alea(0,31);
-		int y=generer_alea(0,31);
+		int x=generer_aleaint(0,31);
+		int y=generer_aleaint(0,31);
 		
 		if (grille[x][y].test_cellule() == false)
 		{
@@ -81,6 +81,7 @@ Environnement::Environnement(const int w,const int h, float A_init, float fit_mi
 	Ainit = A_init;
 	largeur = w;
 	hauteur = h;
+	
 	grille = new Case*[w];
 	for(int i = 0; i<w; i++)
 		grille[i] = new Case[h];
@@ -89,8 +90,8 @@ Environnement::Environnement(const int w,const int h, float A_init, float fit_mi
 	
 	for(int i=0; i<(w*h)/2; i++)
 	{
-		int x=generer_alea(0,w);
-		int y=generer_alea(0,h);
+		int x=generer_aleaint(0,w-1);
+		int y=generer_aleaint(0,h-1);
 		
 		if (grille[x][y].get_cellule() == nullptr)
 		{
@@ -192,14 +193,17 @@ void Environnement::Reinitialisation(){
 void Environnement::Affichagrille(){
 	for (int j = 0 ; j < get_hauteur() ; j++){
 		for (int i = 0 ; i < get_largeur() ; i++){
-			if (grille[i][j].get_cellule()->type() == 'a'){
-			couleur("31");
-			printf("A ");
+			if (grille[i][j].get_cellule() == nullptr){
+				printf("  ");
 			}
-			else
+			else if (grille[i][j].get_cellule()->type() == 'a'){
+				couleur("31");
+				printf("A ");
+			}
+			else if (grille[i][j].get_cellule()->type() == 'b')
 			{
-			couleur("36");
-			printf("B ");
+				couleur("36");
+				printf("B ");
 			}
 		}
 		cout <<  endl;
@@ -208,31 +212,24 @@ void Environnement::Affichagrille(){
 	couleur("0");
 }
 
-void Environnement::AffichA(){
+void Environnement::Affichconc(){
 	for (int j = 0 ; j < get_hauteur() ; j++){
 		for (int i = 0 ; i < get_largeur() ; i++){
-			cout << grille[i][j].conc_A() << " " ;
+			cout << "[" ;
+			cout << grille[i][j].conc_A() << "," ;
+			cout << grille[i][j].conc_B() << "," ;
+			cout << grille[i][j].conc_C() << "] " ;
 			}
 		cout <<  endl;
 		}
 }
 
-void Environnement::AffichB(){
-	for (int j = 0 ; j < get_hauteur() ; j++){
-		for (int i = 0 ; i < get_largeur() ; i++){
-			cout << grille[i][j].conc_B() << " " ;
-			}
-		cout <<  endl;
-		}
-}
 
-void Environnement::AffichC(){
-	for (int j = 0 ; j < get_hauteur() ; j++){
-		for (int i = 0 ; i < get_largeur() ; i++){
-			cout << grille[i][j].conc_C() << " " ;
-			}
-		cout <<  endl;
-		}
+void Environnement::Run(){
+//	for (int j = 0 ; j < get_hauteur() ; j++){
+//		for (int i = 0 ; i < get_largeur() ; i++){
+	grille[0][0].mort(1);
+	
 }
 
 

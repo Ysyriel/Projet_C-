@@ -56,7 +56,7 @@ public:
 //==============================
 	void metabol_ext();
 	void mort(float p);
-	void Metabolisme(float R, float dt);
+	void metabolisme(float R, float dt);
 	bool test_cellule();
 
 protected:

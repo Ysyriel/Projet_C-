@@ -41,6 +41,7 @@ public:
 //==============================
 
 	void metabol_in(float R, float dt, float conc_out);
+	void maj_fitness();
 
 protected:
 //==============================
