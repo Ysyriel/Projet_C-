@@ -31,10 +31,22 @@ int main()
 	Envir.Affichagrille();
 	cout << endl;
 	Envir.Affichconc();
-	Envir.Run();
 	Envir.Affichagrille();
 	cout << endl;
 	Envir.Affichconc();
+	cout << endl;
+	
+	
+	Envir.metabol_all();
+	Envir.Affichconc();
+	cout << endl;
+	Envir.metabol_all();
+	Envir.Affichconc();
+	cout << endl;
+	Envir.metabol_all();
+	Envir.Affichconc();
+	cout << endl;
+	
 	
 	
 	return 0;
