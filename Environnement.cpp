@@ -12,14 +12,16 @@
 #include "couleurs.h"
 #include "stdio.h"
 
-#include <vector>
-#include <algorithm>
+#include <vector>       // std::vector
+#include <algorithm>    // std::shuffle
+#include <random>       // std::default_random_engine
+#include <chrono>       // std::chrono::system_clock
+
 #include <iostream>
 using std::cout;
 using std::cin;
 using std::endl;
 
-using namespace std;
 
 
 int generer_aleaint(int min, int max)
@@ -224,31 +226,60 @@ void Environnement::Affichconc(){
 		}
 }
 
-
-void Environnement::Run(){
-//	for (int j = 0 ; j < get_hauteur() ; j++){
-//		for (int i = 0 ; i < get_largeur() ; i++){
-	grille[0][0].mort(1);
-	
-}
-
-
-
-/*
 void Environnement::Competition(){
-	vector<Case*> gaps;
-	for (int x = 0 ; x < get_largeur() ; x++){ //Remplit un vector de pointeur des cases vides
-		for (int y = 0 ; y < get_hauteur() ; y++){
-			if (grille[x][y].get_cellule() == NULL){
-				gaps.push_back(&grille[x][y]);
+	std::vector<Case*> gaps;
+	std::vector<int> test;
+	int iterateur = 0;
+	for (int j = 0 ; j < get_hauteur() ; j++){   //Remplit un vecteur de cases vides
+		for (int i = 0 ; i < get_largeur() ; i++){ 
+			if (grille[i][j].get_cellule() == nullptr){
+				gaps.push_back(&grille[i][j]);
+				test.push_back(iterateur);
+				iterateur++;
 			}
 		}
 	}
-	random_shuffle (gaps.begin(), gaps.end()); //Range aleatoirement le vector
 	
+	for (unsigned int i = 0; i< test.size(); i++)
+		cout << test[i] << " ";
+	cout << endl;
 	
-	
-	
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  shuffle (gaps.begin(), gaps.end(), std::default_random_engine(seed));
+  shuffle (test.begin(), test.end(), std::default_random_engine(seed));
+
+	for (unsigned int i = 0; i< gaps.size(); i++)
+		cout << gaps[i];
+	cout << endl;
+	for (unsigned int i = 0; i< test.size(); i++)
+		cout << test[i] << " " ;
+	cout << endl;
 }
 
-*/
+
+void Environnement::Run(){
+	Affichagrille();
+	cout << endl;
+	Affichconc();
+	cout << endl;
+	int pas = 0;
+	while(pas<3){
+		for (int j = 0 ; j < get_hauteur() ; j++){
+			for (int i = 0 ; i < get_largeur() ; i++){
+				if(grille[i][j].get_cellule() != nullptr){
+					grille[i][j].mort(0.5);
+				}
+			}
+		}
+		Affichagrille();
+		cout << endl;
+		Affichconc();
+		cout << endl;
+		Competition();
+		pas++;
+	}
+}
+
+
+
+

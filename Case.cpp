@@ -28,7 +28,7 @@ Case::Case()
 {
 	cellule = nullptr;
 	conc_ext[0] = 0;
-	conc_ext[1] = 20;
+	conc_ext[1] = 0;
 	conc_ext[2] = 0;
 }
 

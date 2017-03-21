@@ -16,6 +16,7 @@ using std::endl;
 #include "Individu.h"
 #include "Environnement.h"
 
+
 //==============================
 //    FUNCTION DECLARATION
 //==============================
@@ -26,28 +27,7 @@ using std::endl;
 
 int main()
 {
-	Environnement Test;
-	Environnement Envir(4,4,25,0.2);
-	Envir.Affichagrille();
-	cout << endl;
-	Envir.Affichconc();
-	Envir.Affichagrille();
-	cout << endl;
-	Envir.Affichconc();
-	cout << endl;
-	
-	
-	Envir.metabol_all();
-	Envir.Affichconc();
-	cout << endl;
-	Envir.metabol_all();
-	Envir.Affichconc();
-	cout << endl;
-	Envir.metabol_all();
-	Envir.Affichconc();
-	cout << endl;
-	
-	
-	
-	return 0;
+  Environnement Envir(4,4,25,0.2);
+  Envir.Run();
+  return 0;
 }
