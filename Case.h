@@ -58,6 +58,7 @@ public:
 	void mort(float p);
 	void metabolisme(float R, float dt);
 	bool test_cellule();
+	void Mutation(float p);
 
 protected:
 //==============================

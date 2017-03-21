@@ -2,6 +2,8 @@
 //    INCLUDES
 //==============================
 #include "Case.h"
+#include "CellA.h"
+#include "CellB.h"
 #include <cstdio>
 #include <cstdlib>
 #include <time.h>
@@ -11,15 +13,12 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-using namespace std;
 
 
-
-float generer_aleafloat(int min, int max)
+float gener_aleafloat(int min, int max)
 {
 	return (min + (rand()/(double)RAND_MAX)*(max-min));
 }
-
 
 //==============================
 //    CONSTRUCTORS
@@ -44,8 +43,36 @@ Case::~Case(){
 //==============================
 
 
+void Case::Mutation(float p){ //Mute la cellule contenue dans la case avec une probabilité p
+	srand (time (NULL));
+	float r = gener_aleafloat(0,1);
+	if (r < p){
+		if (cellule->type() == 'a'){
+			CellB* B = new CellB;
+			B->set_phenotypeA(cellule->phenotype_A());
+			B->set_phenotypeB(cellule->phenotype_B());
+			B->set_phenotypeC(cellule->phenotype_C());
+			delete cellule;
+			cellule = B;
+			
+		}
+		else if (cellule->type() == 'b'){
+			CellA* A = new CellA;
+			A->set_phenotypeA(cellule->phenotype_A());
+			A->set_phenotypeB(cellule->phenotype_B());
+			A->set_phenotypeC(cellule->phenotype_C());
+			delete cellule;
+			cellule = A;
+			
+		}
+	}
+	
+	
+}
+
+
 void Case::mort(float p){
-	float r = generer_aleafloat(0,1); 
+	float r = gener_aleafloat(0,1); 
 	if (r<p){
 		set_concA(conc_A()+cellule -> phenotype_A());
 		set_concB(conc_B()+cellule -> phenotype_B());

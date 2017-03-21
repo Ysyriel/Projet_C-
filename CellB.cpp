@@ -16,9 +16,9 @@ using std::endl;
 //==============================
 CellB::CellB(){
   genotype = 'b';
-  phenotype[0]=5;
-  phenotype[1]=5;
-  phenotype[2]=5;
+  phenotype[0]=0;
+  phenotype[1]=0;
+  phenotype[2]=0;
   fitness = phenotype[2];
 }
 
@@ -38,6 +38,9 @@ void CellB::metabol_in(float R, float dt, float conc_out){
 	phenotype[2] = phenotype[2] + dt * (phenotype[1] * R);
 }
 
-void CellB::maj_fitness(){
+void CellB::maj_fitness(float fit_min){
 	fitness = phenotype[2];
+	if (fitness < fit_min){
+		fitness = fit_min;
+	}
 }

@@ -152,9 +152,18 @@ void Environnement::metabol_all(){
 			grille[x][y].metabolisme(r, 0.1);
 			
 		}
-	}
-	
+	}	
 }
+
+
+void Environnement::Maj_fitness(){
+	for (int x = 0 ; x < 32 ; x++){
+		for (int y = 0 ; y < 32 ; y++){
+			grille[x][y].get_cellule()->maj_fitness(fitness_min);
+		}
+	}
+}
+
 
 
 

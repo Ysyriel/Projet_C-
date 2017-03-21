@@ -43,6 +43,7 @@ public:
 //    PUBLIC METHODS
 //==============================
 
+	void Maj_fitness();
 	void Diffusion(int D); //Diffusion des concentrations
 	void Reinitialisation(); //Reinitialise la grille
 	void Competition();
