@@ -40,6 +40,12 @@ int main()
   Envir.Affichagrille();
   Envir.Affichconc();
   Envir.metabol_all();
+  
+  
+  for (int i = 0; i<8; i++){
+		Envir.Voisinage(1,1)[i]->set_concA(300);
+	}
+	Envir.Affichconc();
  
   return 0;
 

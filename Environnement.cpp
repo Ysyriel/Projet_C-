@@ -235,6 +235,55 @@ void Environnement::Affichconc(){
 		}
 }
 
+
+// CONDITIONS SUR LES CASES VIDES A FAIRE
+std::vector<Case*> Environnement::Voisinage(int x, int y){ //Donnent les cases autour de la case ayant pour coordonnees x et y
+	std::vector<Case*> Voisins;
+	Voisins.push_back(&grille[x+1%32][y]);
+	Voisins.push_back(&grille[x+1%32][y+1%32]);
+	Voisins.push_back(&grille[x][y+1%32]);
+	
+	if (y == 0){
+		Voisins.push_back(&grille[x+1%32][31]);
+		Voisins.push_back(&grille[x%32][31]);
+	} else {
+		Voisins.push_back(&grille[x+1%32][y-1]);
+		Voisins.push_back(&grille[x%32][y-1]);
+	}
+	
+	//A faire
+	if (x == 0){
+		Voisins.push_back(&grille[31][y+1%32]);
+		Voisins.push_back(&grille[31][y%32]);
+	} else {
+		Voisins.push_back(&grille[x-1][y+1%32]);
+		Voisins.push_back(&grille[x-1][y%32]);
+	}
+	
+	if (x==0 and y==0){
+		Voisins.push_back(&grille[31][31]);
+	} else {
+		Voisins.push_back(&grille[x-1][y-1]);
+	}
+	
+	
+	
+	return Voisins;
+	
+}
+
+
+Case* Environnement::Best_cell(std::vector<Case*> voisins){ //Retourne la case contenant la cellule avec la plus haute fitness dans un vecteur de cases
+	Case* CASE;
+	for (unsigned int i = 0; i < voisins.size(); i++){
+		if (voisins[i]->get_cellule()->get_fitness() > CASE->get_cellule()->get_fitness()){
+			CASE = voisins[i];
+		}
+	}
+	return CASE;
+}
+
+
 void Environnement::Competition(){
 	std::vector<Case*> gaps;
 	std::vector<int> test;
@@ -249,6 +298,11 @@ void Environnement::Competition(){
 		}
 	}
 	
+	
+	
+	
+	
+	/*
 	for (unsigned int i = 0; i< test.size(); i++)
 		cout << test[i] << " ";
 	cout << endl;
@@ -263,6 +317,7 @@ void Environnement::Competition(){
 	for (unsigned int i = 0; i< test.size(); i++)
 		cout << test[i] << " " ;
 	cout << endl;
+	*/
 }
 
 
