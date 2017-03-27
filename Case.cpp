@@ -101,27 +101,27 @@ bool Case::test_cellule(){
 //    GETTERS
 //==============================
 
-float Case::conc_A(){
+float Case::conc_A() const{
 	return conc_ext[0];
 }
 
-float Case::conc_B(){
+float Case::conc_B() const{
 	return conc_ext[1];
 }
 
-float Case::conc_C(){
+float Case::conc_C() const{
 	return conc_ext[2];
 }
 
-Individu* Case::get_cellule(){
+Individu* Case::get_cellule() const{
 	return cellule;
 }
 
-int Case::get_x(){
+int Case::get_x() const{
 	return coord_x;
 }
 
-int Case::get_y(){
+int Case::get_y() const{
 	return coord_y;
 }
 
@@ -155,7 +155,6 @@ void Case::set_x(int x){
 void Case::set_y(int y){
 	coord_y = y;
 }
-
 
 //==============================
 //    PROTECTED METHODS
