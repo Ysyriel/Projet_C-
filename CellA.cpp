@@ -2,6 +2,7 @@
 //    INCLUDES
 //==============================
 #include "CellA.h"
+#include "Individu.h"
 #include <iostream>
 using std::cout;
 using std::cin;
@@ -22,11 +23,11 @@ CellA::CellA(){
   fitness = phenotype[1];
 }
 
-CellA::CellA(const CellA& cellule){  //Constructeur par copie
-	genotype = cellule.genotype;
-	phenotype[0]=cellule.phenotype[0];
-	phenotype[1]=cellule.phenotype[1];
-	phenotype[2]=cellule.phenotype[2];
+CellA::CellA(const Individu& cellule){  //Constructeur par copie
+	genotype = cellule.type();
+	phenotype[0]=cellule.phenotype_A();
+	phenotype[1]=cellule.phenotype_B();
+	phenotype[2]=cellule.phenotype_C();
 	fitness = phenotype[1];
 }
 

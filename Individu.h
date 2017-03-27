@@ -25,11 +25,11 @@ public:
 //==============================
 //    GETTERS
 //==============================
-	float phenotype_A(); //Renvoie la concentration A
-	float phenotype_B();
-	float phenotype_C();
-	float get_fitness();
-	char type();
+	float phenotype_A() const; //Renvoie la concentration A
+	float phenotype_B() const;
+	float phenotype_C() const;
+	float get_fitness() const;
+	char type() const;
 
 //==============================
 //    SETTERS

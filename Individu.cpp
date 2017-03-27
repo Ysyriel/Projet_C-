@@ -27,23 +27,23 @@ Individu::~Individu(){
 //    GETTERS
 //==============================
 
-float Individu::phenotype_A(){
+float Individu::phenotype_A() const{
 	return phenotype[0];
 }
 
-float Individu::phenotype_B(){
+float Individu::phenotype_B() const{
 	return phenotype[1];
 }
 
-float Individu::phenotype_C(){
+float Individu::phenotype_C() const{
 	return phenotype[2];
 }
 
-char Individu::type(){
+char Individu::type() const{
 	return genotype;
 }
 
-float Individu::get_fitness(){
+float Individu::get_fitness() const{
 	return fitness;
 }
 

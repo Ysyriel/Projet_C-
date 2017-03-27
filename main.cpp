@@ -29,7 +29,8 @@ using std::endl;
 int main()
 {
 	
-	
+	Environnement Envir;
+	Envir.Run();
  
   return EXIT_SUCCESS;
 }
