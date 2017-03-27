@@ -74,7 +74,7 @@ void Case::Mutation(float p){ //Mute la cellule contenue dans la case avec une p
 void Case::mort(float p){
 	float r = gener_aleafloat(0,1); 
 	if (r<p){
-		set_concA(conc_ :A()+cellule -> phenotype_A());
+		set_concA(conc_A()+cellule -> phenotype_A());
 		set_concB(conc_B()+cellule -> phenotype_B());
 		set_concC(conc_C()+cellule -> phenotype_C());
 		delete cellule;

@@ -296,10 +296,17 @@ void Environnement::Competition(){
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   shuffle (gaps.begin(), gaps.end(), std::default_random_engine(seed));
   for(unsigned int i = 0; i < gaps.size() ; i++){
+		Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y())).set_phenotypeA(Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y())).phenotype_A / 2);
+		Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y())).set_phenotypeB(Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y())).phenotype_B / 2);
+		Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y())).set_phenotypeC(Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y())).phenotype_C / 2);
+		if ( Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y())).type() == 'a' ){
+			CellA divise = new CellA(Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y())));
+		}
+		else {
+			CellB divise = new CellB(Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y())));
+		}
+		gaps[i]->set_cellule(divise);
 	}
-		//Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y()));
-			
-			//set.cellule
 }	
 
 
