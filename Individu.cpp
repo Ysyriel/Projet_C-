@@ -43,6 +43,10 @@ char Individu::type(){
 	return genotype;
 }
 
+float Individu::get_fitness(){
+	return fitness;
+}
+
 //==============================
 //    SETTERS
 //==============================

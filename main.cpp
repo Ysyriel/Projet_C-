@@ -29,5 +29,5 @@ int main()
 {
   Environnement Envir(4,4,25,0.2);
   Envir.Run();
-  return 0;
+  return EXIT_SUCCESS;
 }

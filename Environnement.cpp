@@ -29,6 +29,26 @@ int generer_aleaint(int min, int max)
 	return (min+(rand()%(max-min+1)));
 }
 
+float maximum(float a, float b){
+	if(a > b) return a;
+	else return b;
+} 
+
+
+float maximoore(float a, float b, float c, float d, float e, float f, float g, float h)
+{
+ float max;
+ max = maximum(a, maximum(b, maximum(c, maximum(d, maximum(e, maximum(f, maximum(g, h)))))));
+ return max;
+}
+
+
+float max_fitness(int x, int y){
+	max_fitness = maximoore(grille[x+1][y].get_fitness, grille[x][y+1].get_fitness, grille[x-1][y].get_fitness, grille[x][y-1].get_fitness, grille[x+1][y+1].get_fitness, grille[x+1][y-1].get_fitness, grille[x-1][y+1].get_fitness, grille[x-1][y-1].get_fitness)
+	
+}
+
+
 //==============================
 //    CONSTRUCTORS
 //==============================
@@ -228,32 +248,21 @@ void Environnement::Affichconc(){
 
 void Environnement::Competition(){
 	std::vector<Case*> gaps;
-	std::vector<int> test;
-	int iterateur = 0;
 	for (int j = 0 ; j < get_hauteur() ; j++){   //Remplit un vecteur de cases vides
 		for (int i = 0 ; i < get_largeur() ; i++){ 
 			if (grille[i][j].get_cellule() == nullptr){
 				gaps.push_back(&grille[i][j]);
-				test.push_back(iterateur);
-				iterateur++;
 			}
 		}
-	}
-	
-	for (unsigned int i = 0; i< test.size(); i++)
-		cout << test[i] << " ";
-	cout << endl;
-	
+	}	
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   shuffle (gaps.begin(), gaps.end(), std::default_random_engine(seed));
-  shuffle (test.begin(), test.end(), std::default_random_engine(seed));
-
-	for (unsigned int i = 0; i< gaps.size(); i++)
-		cout << gaps[i];
-	cout << endl;
-	for (unsigned int i = 0; i< test.size(); i++)
-		cout << test[i] << " " ;
-	cout << endl;
+  for(unsigned int i = 0; i < gaps.size() ; i++){
+		//maximoore(gaps[i].get_x(), gaps[i].get_y())
+	}
+	cout << maximoore(14,25,34,4,54,06,7,8) << endl;
+	
+	
 }
 
 
