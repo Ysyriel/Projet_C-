@@ -45,7 +45,7 @@ int main()
   for (int i = 0; i<8; i++){
 		Envir.Voisinage(1,1)[i]->set_concA(300);
 	}
-	Envir.Affichconc();
+	Case* test = Envir.Best_cell(Envir.Voisinage(1,1));
  
   return 0;
 

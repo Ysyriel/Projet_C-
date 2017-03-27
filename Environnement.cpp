@@ -274,11 +274,15 @@ std::vector<Case*> Environnement::Voisinage(int x, int y){ //Donnent les cases a
 
 
 Case* Environnement::Best_cell(std::vector<Case*> voisins){ //Retourne la case contenant la cellule avec la plus haute fitness dans un vecteur de cases
-	Case* CASE;
+	Case* CASE = new Case;
+	CellB* cellule = new CellB;
+	CASE->set_cellule(cellule);
 	for (unsigned int i = 0; i < voisins.size(); i++){
-		if (voisins[i]->get_cellule()->get_fitness() > CASE->get_cellule()->get_fitness()){
-			CASE = voisins[i];
-		}
+		if (voisins[i]->get_cellule() != nullptr){
+			if (voisins[i]->get_cellule()->get_fitness() > CASE->get_cellule()->get_fitness()){
+				CASE = voisins[i];
+			}
+		}	
 	}
 	return CASE;
 }
@@ -286,14 +290,10 @@ Case* Environnement::Best_cell(std::vector<Case*> voisins){ //Retourne la case c
 
 void Environnement::Competition(){
 	std::vector<Case*> gaps;
-	std::vector<int> test;
-	int iterateur = 0;
 	for (int j = 0 ; j < get_hauteur() ; j++){   //Remplit un vecteur de cases vides
 		for (int i = 0 ; i < get_largeur() ; i++){ 
 			if (grille[i][j].get_cellule() == nullptr){
 				gaps.push_back(&grille[i][j]);
-				test.push_back(iterateur);
-				iterateur++;
 			}
 		}
 	}
