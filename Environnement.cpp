@@ -24,11 +24,6 @@ using std::endl;
 
 
 
-int generer_aleaint(int min, int max)
-{
-	return (min+(rand()%(max-min+1)));
-}
-
 
 //==============================
 //    CONSTRUCTORS
@@ -335,5 +330,11 @@ void Environnement::Run(){
 }
 
 
+//==============================
+//    PROTECTED METHODS
+//==============================
 
-
+int Environnement::generer_aleaint(int min, int max)
+{
+	return (min+(rand()%(max-min+1)));
+}

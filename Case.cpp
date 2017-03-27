@@ -15,11 +15,6 @@ using std::endl;
 
 
 
-float gener_aleafloat(int min, int max)
-{
-	return (min + (rand()/(double)RAND_MAX)*(max-min));
-}
-
 //==============================
 //    CONSTRUCTORS
 //==============================
@@ -159,4 +154,14 @@ void Case::set_x(int x){
 
 void Case::set_y(int y){
 	coord_y = y;
+}
+
+
+//==============================
+//    PROTECTED METHODS
+//==============================
+
+float Case::gener_aleafloat(int min, int max)
+{
+	return (min + (rand()/(double)RAND_MAX)*(max-min));
 }

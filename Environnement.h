@@ -59,6 +59,7 @@ protected:
 //==============================
 //    PROTECTED METHODS
 //==============================
+	int generer_aleaint(int min, int max); //Génère un entier aléatoire entre 2 valeurs données en paramètres
 
 //==============================
 //    ATTRIBUTES

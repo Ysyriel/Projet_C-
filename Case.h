@@ -65,6 +65,7 @@ protected:
 //    PROTECTED METHODS
 //==============================
 
+	float gener_aleafloat(int min, int max);
 //==============================
 //    ATTRIBUTES
 //==============================
