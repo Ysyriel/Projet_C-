@@ -29,25 +29,6 @@ int generer_aleaint(int min, int max)
 	return (min+(rand()%(max-min+1)));
 }
 
-float maximum(float a, float b){
-	if(a > b) return a;
-	else return b;
-} 
-
-
-float maximoore(float a, float b, float c, float d, float e, float f, float g, float h)
-{
- float max;
- max = maximum(a, maximum(b, maximum(c, maximum(d, maximum(e, maximum(f, maximum(g, h)))))));
- return max;
-}
-
-
-float max_fitness(int x, int y){
-	max_fitness = maximoore(grille[x+1][y].get_fitness, grille[x][y+1].get_fitness, grille[x-1][y].get_fitness, grille[x][y-1].get_fitness, grille[x+1][y+1].get_fitness, grille[x+1][y-1].get_fitness, grille[x-1][y+1].get_fitness, grille[x-1][y-1].get_fitness)
-	
-}
-
 
 //==============================
 //    CONSTRUCTORS
@@ -293,11 +274,9 @@ std::vector<Case*> Environnement::Voisinage(int x, int y){ //Donnent les cases a
 }
 
 
-Case* Environnement::Best_cell(std::vector<Case*> voisins){ //Retourne la case contenant la cellule avec la plus haute fitness dans un vecteur de cases
-	Case* CASE = new Case;
-	CellB* cellule = new CellB;
-	CASE->set_cellule(cellule);
-	for (unsigned int i = 0; i < voisins.size(); i++){
+Case* Environnement::Best_cell(std::vector<Case*> voisins){ //Retourne la case contenant la cellule avec la plus haute fitness parmi un vecteur de cases
+	Case* CASE = voisins[0];
+	for (unsigned int i = 1; i < voisins.size(); i++){
 		if (voisins[i]->get_cellule() != nullptr){
 			if (voisins[i]->get_cellule()->get_fitness() > CASE->get_cellule()->get_fitness()){
 				CASE = voisins[i];
@@ -320,9 +299,7 @@ void Environnement::Competition(){
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   shuffle (gaps.begin(), gaps.end(), std::default_random_engine(seed));
   for(unsigned int i = 0; i < gaps.size() ; i++){
-		//maximoore(gaps[i].get_x(), gaps[i].get_y())
 	}
-	cout << maximoore(14,25,34,4,54,06,7,8) << endl;
 	
 }
 

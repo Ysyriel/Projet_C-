@@ -28,8 +28,6 @@ using std::endl;
 
 int main()
 {
-  Environnement Envir(4,4,25,0.2);
-  Envir.Run();
 
   Environnement Envir(10,10,25,0.2);
   Envir.Affichagrille();

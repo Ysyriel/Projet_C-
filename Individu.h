@@ -30,7 +30,6 @@ public:
 	float phenotype_C();
 	float get_fitness();
 	char type();
-	float get_fitness();
 
 //==============================
 //    SETTERS
