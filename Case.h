@@ -29,12 +29,12 @@ public:
 //==============================
 //    GETTERS
 //==============================
-	float conc_A(); //Renvoie la concentration A
-	float conc_B();
-	float conc_C();
-	Individu* get_cellule();
-	int get_x();
-	int get_y();
+	float conc_A() const; //Renvoie la concentration A
+	float conc_B() const;
+	float conc_C() const;
+	Individu* get_cellule() const;
+	int get_x() const;
+	int get_y() const;
 
 //==============================
 //    SETTERS
