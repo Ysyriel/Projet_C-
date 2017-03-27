@@ -18,6 +18,7 @@ public:
 //    CONSTRUCTORS
 //==============================
   CellA();
+  CellA(const CellA& cellule)
 
 //==============================
 //    DESTRUCTOR
