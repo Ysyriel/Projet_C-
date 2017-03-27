@@ -22,6 +22,14 @@ CellA::CellA(){
   fitness = phenotype[1];
 }
 
+CellA::CellA(const CellA& cellule){  //Constructeur par copie
+	genotype = cellule.genotype;
+	phenotype[0]=cellule.phenotype[0];
+	phenotype[1]=cellule.phenotype[1];
+	phenotype[2]=cellule.phenotype[2]
+	fitness = phenotype[1]
+}
+
 //==============================
 //    DESTRUCTOR
 //==============================

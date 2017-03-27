@@ -275,21 +275,18 @@ std::vector<Case*> Environnement::Voisinage(int x, int y){ //Donnent les cases a
 	if (x == 0){
 		Voisins.push_back(&grille[31][y+1%32]);
 		Voisins.push_back(&grille[31][y%32]);
-	} else {
+	} 
+	else {
 		Voisins.push_back(&grille[x-1][y+1%32]);
 		Voisins.push_back(&grille[x-1][y%32]);
 	}
-	
 	if (x==0 and y==0){
 		Voisins.push_back(&grille[31][31]);
-	} else {
+	} 
+	else {
 		Voisins.push_back(&grille[x-1][y-1]);
 	}
-	
-	
-	
 	return Voisins;
-	
 }
 
 
@@ -320,10 +317,10 @@ void Environnement::Competition(){
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   shuffle (gaps.begin(), gaps.end(), std::default_random_engine(seed));
   for(unsigned int i = 0; i < gaps.size() ; i++){
-		//maximoore(gaps[i].get_x(), gaps[i].get_y())
-	}
-	cout << maximoore(14,25,34,4,54,06,7,8) << endl;
-	
+		Best_cell(Voisinage(gaps[i].get_x(), gaps[i].get_y()));
+			
+			set.cellule
+	}	
 }
 
 
