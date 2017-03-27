@@ -40,7 +40,7 @@ public:
 //    PUBLIC METHODS
 //==============================
 	void metabol_in(float R, float dt, float conc_out);
-	void maj_fitness();
+	void maj_fitness(float fit_min);
 
 protected:
 //==============================

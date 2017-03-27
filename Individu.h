@@ -30,6 +30,7 @@ public:
 	float phenotype_C();
 	float get_fitness();
 	char type();
+	float get_fitness();
 
 //==============================
 //    SETTERS
@@ -46,7 +47,7 @@ public:
 //    PUBLIC METHODS
 //==============================
 	virtual void metabol_in(float R, float dt, float conc_out) = 0;
-	virtual void maj_fitness() = 0;
+	virtual void maj_fitness(float fit_min) = 0;
 	
 
 protected:

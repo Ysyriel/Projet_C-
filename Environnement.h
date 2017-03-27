@@ -5,6 +5,7 @@
 //    INCLUDES
 //==============================
 #include "Case.h"
+#include <vector>   
 
 /**
  * @class Environnement
@@ -43,6 +44,9 @@ public:
 //    PUBLIC METHODS
 //==============================
 
+	std::vector<Case*> Voisinage(int x, int y);
+	Case* Best_cell(std::vector<Case*> voisins);
+	void Maj_fitness();
 	void Diffusion(int D); //Diffusion des concentrations
 	void Reinitialisation(); //Reinitialise la grille
 	void Competition();

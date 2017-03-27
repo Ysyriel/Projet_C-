@@ -9,7 +9,6 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-
 #include "CellA.h"
 #include "CellB.h"
 #include "Case.h"
@@ -25,30 +24,36 @@ using std::endl;
 //    MAIN
 //==============================
 
-
 int main()
 {
+<<<<<<< HEAD
+	Environnement Test;
+	Environnement Envir(4,4,25,0.2);
+	Envir.Affichagrille();
+	cout << endl;
+	Envir.Affichconc();
+	Envir.Affichagrille();
+	cout << endl;
+	Envir.Affichconc();
+	cout << endl;
+	
+	
+	Envir.metabol_all();
+	Envir.Affichconc();
+	cout << endl;
+	Envir.metabol_all();
+	Envir.Affichconc();
+	cout << endl;
+	Envir.metabol_all();
+	Envir.Affichconc();
+	cout << endl;
+	
+	
+	
+	return 0;
+=======
   Environnement Envir(4,4,25,0.2);
   Envir.Run();
-
-  Environnement Envir(10,10,25,0.2);
-  Envir.Affichagrille();
-  Envir.Affichconc();
-  Envir.metabol_all();
-  
-  Envir.Affichagrille();
-  Envir.Affichconc();
-  Envir.metabol_all();
-  
-  Envir.Affichagrille();
-  Envir.Affichconc();
-  Envir.metabol_all();
-  
-  
-  for (int i = 0; i<8; i++){
-		Envir.Voisinage(1,1)[i]->set_concA(300);
-	}
-	Envir.Affichconc();
- 
-  return EXIT_SUCCESS;
+  return 0;
+>>>>>>> 27698ff762cbd5b1716db5c6d027c7563d3fe735
 }
