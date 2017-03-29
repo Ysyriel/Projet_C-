@@ -220,8 +220,9 @@ void Environnement::Affichagrille(){
 		}
 		cout <<  endl;
 	}
-	
+	cout << endl;
 	couleur("0");
+	
 }
 
 void Environnement::Affichconc(){
@@ -234,8 +235,8 @@ void Environnement::Affichconc(){
 			}
 		cout <<  endl;
 		}
+	cout << endl;
 }
-
 
 // CONDITIONS SUR LES CASES VIDES A FAIRE
 std::vector<Case*> Environnement::Voisinage(int x, int y){ //Donnent les cases autour de la case ayant pour coordonnees x et y
@@ -252,7 +253,6 @@ std::vector<Case*> Environnement::Voisinage(int x, int y){ //Donnent les cases a
 		Voisins.push_back(&grille[x%32][y-1]);
 	}
 	
-	//A faire
 	if (x == 0){
 		Voisins.push_back(&grille[31][y+1%32]);
 		Voisins.push_back(&grille[31][y%32]);
@@ -304,13 +304,9 @@ void Environnement::Competition(){
 
 
 
-void Environnement::Run(){
-	Affichagrille();
-	cout << endl;
-	Affichconc();
-	cout << endl;
+void Environnement::Run(int temps; int T){
 	int pas = 0;
-	while(pas<3){
+	while(pas<10000){
 		for (int j = 0 ; j < get_hauteur() ; j++){
 			for (int i = 0 ; i < get_largeur() ; i++){
 				if(grille[i][j].get_cellule() != nullptr){
@@ -318,13 +314,11 @@ void Environnement::Run(){
 				}
 			}
 		}
-		Affichagrille();
-		cout << endl;
-		Affichconc();
-		cout << endl;
 		Competition();
 		pas++;
 	}
+	Affichagrille();
+	Affichconc();
 }
 
 
