@@ -18,7 +18,7 @@ public:
 //    CONSTRUCTORS
 //==============================
   CellA();
-  CellA(const CellA& cellule)
+  CellA(const Individu& cellule);
 
 //==============================
 //    DESTRUCTOR
