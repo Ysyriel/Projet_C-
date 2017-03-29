@@ -30,6 +30,10 @@ int main()
 {
 	
 	Environnement Envir;
+	Case* Test = Envir.Best_cell(Envir.Voisinage(2,2));
+ 
+	Envir.Competition();
+	
 	Envir.Run();
  
   return EXIT_SUCCESS;
