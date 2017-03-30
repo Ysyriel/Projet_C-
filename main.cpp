@@ -30,7 +30,7 @@ int main()
 {
 	
 	Environnement Envir;
-	Case* Test = Envir.Best_cell(Envir.Voisinage(2,2));
+	//Case* Test = Envir.Best_cell(Envir.Voisinage(2,2));
  
 	Envir.Competition();
 	
