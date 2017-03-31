@@ -76,6 +76,7 @@ Environnement::Environnement() //Constructeur par défaut
 
 Environnement::Environnement(const int w,const int h, float A_init, float fit_min)
 {
+	srand (time (NULL)); 
 	Ainit = A_init;
 	largeur = w;
 	hauteur = h;
@@ -103,6 +104,8 @@ Environnement::Environnement(const int w,const int h, float A_init, float fit_mi
 		for(int y=0; y<h; y++)
 		{
 			grille[x][y].set_concA(Ainit); //Met la concentration initiale de A dans chaque case
+			grille[x][y].set_x(x); //Donne les attributs de coordonnes aux cases
+			grille[x][y].set_y(y);
 			if (grille[x][y].get_cellule() == nullptr)
 			{
 				CellB* B = new CellB();
@@ -165,32 +168,32 @@ void Environnement::Maj_fitness(){
 //A CORRIGER
 void Environnement::Diffusion(int D){
 	
-	for (int x = 0 ; x < 32 ; x++){
-		for (int y = 0 ; y < 32 ; y++){
+	for (int x = 0 ; x < largeur ; x++){
+		for (int y = 0 ; y < hauteur ; y++){
 			float A = grille[x][y].conc_A();
 			float B = grille[x][y].conc_B();
 			float C = grille[x][y].conc_C(); 
 			for (int i = -1 ; i < 2 ; i++){
 				for (int j = -1 ; j < 2 ; j++){
-					if ((x+i)%32 == -1){
-						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[31][(y+j)%32].conc_A());
-						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[31][(y+j)%32].conc_B());
-						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[31][(y+j)%32].conc_C());
+					if ((x+i)%largeur == -1){
+						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[largeur-1][(y+j)%hauteur].conc_A());
+						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[largeur-1][(y+j)%hauteur].conc_B());
+						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[largeur-1][(y+j)%hauteur].conc_C());
 					}
-					else if ((y+i)%32 == -1){
-						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[(x+i)%32][31].conc_A());
-						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[(x+i)%32][31].conc_B());
-						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[(x+i)%32][31].conc_C());
+					else if ((y+i)%hauteur == -1){
+						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[(x+i)%largeur][hauteur-1].conc_A());
+						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[(x+i)%largeur][hauteur-1].conc_B());
+						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[(x+i)%largeur][hauteur-1].conc_C());
 					}
-					else if ((y+i)%32 == -1 and (x+i)%32 == -1){
-						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[31][31].conc_A());
-						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[31][31].conc_B());
-						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[31][31].conc_C());
+					else if ((y+i)%hauteur == -1 and (x+i)%largeur == -1){
+						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[largeur-1][hauteur-1].conc_A());
+						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[largeur-1][hauteur-1].conc_B());
+						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[largeur-1][hauteur-1].conc_C());
 					}
 					else {
-						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[(x+i)%32][(y+j)%32].conc_A());
-						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[(x+i)%32][(y+j)%32].conc_B());
-						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[(x+i)%32][(y+j)%32].conc_C());
+						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[(x+i)%largeur][(y+j)%hauteur].conc_A());
+						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[(x+i)%largeur][(y+j)%hauteur].conc_B());
+						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[(x+i)%largeur][(y+j)%hauteur].conc_C());
 					} 
 				}
 			} 
@@ -201,6 +204,8 @@ void Environnement::Diffusion(int D){
 	}
 
 }
+
+
 
 
 void Environnement::Reinitialisation(){
@@ -234,17 +239,13 @@ void Environnement::Affichagrille(){
 	}
 	cout << endl;
 	couleur("0");
-	
 }
 
 
 void Environnement::Affichconc(){
 	for (int j = 0 ; j < get_hauteur() ; j++){
 		for (int i = 0 ; i < get_largeur() ; i++){
-			cout << "[" ;
-			cout << grille[i][j].conc_A() << "," ;
-			cout << grille[i][j].conc_B() << "," ;
-			cout << grille[i][j].conc_C() << "] " ;
+			cout << "[" << grille[i][j].conc_A() << ","<< grille[i][j].conc_B() << ","  << grille[i][j].conc_C() << "] ";
 			}
 		cout <<  endl;
 		}
@@ -254,51 +255,59 @@ void Environnement::Affichconc(){
 
 std::vector<Case*> Environnement::Voisinage(int x, int y){ //Donnent les cases autour de la case ayant pour coordonnees x et y
 	std::vector<Case*> Voisins;
-	Voisins.push_back(&grille[x+1%32][y]);
-	Voisins.push_back(&grille[x+1%32][y+1%32]);
-	Voisins.push_back(&grille[x][y+1%32]);
+	Voisins.push_back(&(grille[(x+1)%largeur][y]));
+	Voisins.push_back(&(grille[(x+1)%largeur][(y+1)%hauteur]));
+	Voisins.push_back(&(grille[x][(y+1)%hauteur]));
 	
 	if (y == 0){
-		Voisins.push_back(&grille[x+1%32][31]);
-		Voisins.push_back(&grille[x%32][31]);
+		Voisins.push_back(&(grille[(x+1)%largeur][hauteur-1]));
+		Voisins.push_back(&(grille[x%largeur][hauteur-1]));
 	} else {
-		Voisins.push_back(&grille[x+1%32][y-1]);
-		Voisins.push_back(&grille[x%32][y-1]);
+		Voisins.push_back(&(grille[(x+1)%largeur][y-1]));
+		Voisins.push_back(&(grille[x%largeur][y-1]));
 	}
 	
 
 	if (x == 0){
-		Voisins.push_back(&grille[31][y+1%32]);
-		Voisins.push_back(&grille[31][y%32]);
+		Voisins.push_back(&(grille[largeur-1][(y+1)%hauteur]));
+		Voisins.push_back(&(grille[largeur-1][y%hauteur]));
 	} 
 	else {
-		Voisins.push_back(&grille[x-1][y+1%32]);
-		Voisins.push_back(&grille[x-1][y%32]);
+		Voisins.push_back(&(grille[x-1][(y+1)%hauteur]));
+		Voisins.push_back(&(grille[x-1][y%hauteur]));
 	}
-	if (x==0 and y==0){
-		Voisins.push_back(&grille[31][31]);
+	if (x == 0 and y == 0){
+		Voisins.push_back(&(grille[largeur-1][hauteur-1]));
 	} 
 	else {
-		Voisins.push_back(&grille[x-1][y-1]);
+		Voisins.push_back(&(grille[x-1][y-1]));
 	}
 	return Voisins;
 }
 
 
 Case* Environnement::Best_cell(std::vector<Case*> voisins){ //Retourne la case contenant la cellule avec la plus haute fitness parmi un vecteur de cases
-	int i = 0;
-	while (voisins[i]->test_cellule() == false && i<7){
-		i++;
+	unsigned int i = 0;
+	while ((voisins[i]->test_cellule() == 0) && (i < voisins.size())) {
+			i++;
 	}
-	Case* CASE = voisins[i];
-	for (unsigned int i = 1; i < voisins.size(); i++){
+
+	if (i == voisins.size()){
+		return nullptr;
+	}
+	
+	float fitmax = voisins[i]->get_cellule()->get_fitness();
+	unsigned int indmax = i;
+	
+	for (unsigned int i = 0; i < voisins.size()-1; i++){
 		if (voisins[i]->test_cellule() != false){
-			if (voisins[i]->get_cellule()->get_fitness() > CASE->get_cellule()->get_fitness()){
-				CASE = voisins[i];
+			if (voisins[i]->get_cellule()->get_fitness() > fitmax){
+				fitmax = voisins[i]->get_cellule()->get_fitness();
+				indmax = i ;
 			}
 		}	
 	}
-	return CASE;
+	return voisins[indmax];
 }
 
 
@@ -316,7 +325,7 @@ void Environnement::Competition(){
   
   for(unsigned int i = 0; i < gaps.size() ; i++){
 		//CONDITION SUR POINTEUR NULL SANS DOUTE
-		/*
+		
 		Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->set_phenotypeA(Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->phenotype_A() / 2); //On divise les concentration de la cellule par 2
 		Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->set_phenotypeB(Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->phenotype_B() / 2);
 		Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->set_phenotypeC(Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->phenotype_C() / 2);
@@ -328,31 +337,32 @@ void Environnement::Competition(){
 		else {
 			CellB* divise = new CellB(*Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule());
 			gaps[i]->set_cellule(divise); 
-		} */
+		} 
 	} 
   
 }	
 
 
-
-
 void Environnement::Run(){
+	Affichagrille();
+	Affichconc();
 	int pas = 0;
 	while(pas<10){
-		for (int j = 0 ; j < hauteur; j++){
-			for (int i = 0 ; i < largeur ; i++){
-				if(grille[i][j].get_cellule() != nullptr){
-					grille[i][j].mort(0.2);
+		for(int j = 0 ; j < hauteur; j++){
+			for(int i = 0 ; i < largeur ; i++){
+				if(grille[i][j].test_cellule() == true){
+					grille[i][j].mort(0.1);
 				}
 			}
 		}
 		Diffusion(0.1);
+		cout <<"Pas : " << pas << " " << endl;
 		Competition();
 		//metabol_all();
 		pas++;
+		Affichagrille();
+		Affichconc();
 	}
-	Affichagrille();
-	Affichconc();
 }
 
 

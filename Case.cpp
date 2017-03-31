@@ -73,7 +73,7 @@ void Case::mort(float p){
 		set_concB(conc_B()+cellule -> phenotype_B());
 		set_concC(conc_C()+cellule -> phenotype_C());
 		delete cellule;
-		cellule = nullptr;
+		cellule = nullptr; 
 	}
 }
 

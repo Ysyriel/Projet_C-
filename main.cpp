@@ -29,12 +29,15 @@ using std::endl;
 int main()
 {
 	
-	Environnement Envir;
+	//Environnement Test(12,12,20,1);
+	//Test.Run();
+	Environnement Test(3,3,20,1);
+	Test.Run();
+
 	//Case* Test = Envir.Best_cell(Envir.Voisinage(2,2));
- 
-	Envir.Competition();
-	
-	Envir.Run();
+  
+	//Environnement Envir;
+	//Envir.Run();
  
   return EXIT_SUCCESS;
 }

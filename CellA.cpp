@@ -18,7 +18,7 @@ using std::endl;
 CellA::CellA(){
   genotype = 'a';
   phenotype[0]=0;
-  phenotype[1]=0;
+  phenotype[1]=5;
   phenotype[2]=0;
   fitness = phenotype[1];
 }

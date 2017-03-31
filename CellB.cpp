@@ -19,7 +19,7 @@ CellB::CellB(){
   genotype = 'b';
   phenotype[0]=0;
   phenotype[1]=0;
-  phenotype[2]=0;
+  phenotype[2]=5;
   fitness = phenotype[2];
 }
 
