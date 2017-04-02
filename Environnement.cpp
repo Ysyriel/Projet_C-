@@ -347,18 +347,18 @@ void Environnement::Run(){
 	Affichagrille();
 	Affichconc();
 	int pas = 0;
-	while(pas<10){
+	while(pas<1000){
+		Diffusion(0.1);
 		for(int j = 0 ; j < hauteur; j++){
 			for(int i = 0 ; i < largeur ; i++){
 				if(grille[i][j].test_cellule() == true){
-					grille[i][j].mort(0.1);
+					grille[i][j].mort(0.5);
 				}
 			}
 		}
-		Diffusion(0.1);
 		cout <<"Pas : " << pas << " " << endl;
 		Competition();
-		//metabol_all();
+		metabol_all();
 		pas++;
 		Affichagrille();
 		Affichconc();

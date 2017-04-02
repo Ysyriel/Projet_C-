@@ -50,6 +50,6 @@ void CellB::metabol_in(float R, float dt, float conc_out){
 void CellB::maj_fitness(float fit_min){
 	fitness = phenotype[2];
 	if (fitness < fit_min){
-		fitness = fit_min;
+		fitness = 0;
 	}
 }
