@@ -34,7 +34,7 @@ Environnement::Environnement() //Constructeur par défaut
 	Ainit = generer_aleaint(1,50);
 	largeur = 32;
 	hauteur = 32;
-
+	
   grille = new Case*[32]; //Cree la grille des cases
   for(int i = 0; i<32; i++)
   	grille[i] = new Case[32];
@@ -164,7 +164,10 @@ void Environnement::Maj_fitness(){
 }
 
 
+
+//A CORRIGER
 void Environnement::Diffusion(int D){
+	
 	for (int x = 0 ; x < largeur ; x++){
 		for (int y = 0 ; y < hauteur ; y++){
 			float A = grille[x][y].conc_A();
@@ -182,7 +185,7 @@ void Environnement::Diffusion(int D){
 						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[(x+i)%largeur][hauteur-1].conc_B());
 						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[(x+i)%largeur][hauteur-1].conc_C());
 					}
-					else if ((y+i)%hauteur == -1 and (x+i)%largeur == -1){
+					else if ((y+i)%hauteur == -1 && (x+i)%largeur == -1){
 						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[largeur-1][hauteur-1].conc_A());
 						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[largeur-1][hauteur-1].conc_B());
 						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[largeur-1][hauteur-1].conc_C());
@@ -199,6 +202,7 @@ void Environnement::Diffusion(int D){
 			grille[x][y].set_concC(grille[x][y].conc_C() - (9 * D * C));
 		}
 	}
+
 }
 
 
@@ -272,31 +276,48 @@ std::vector<Case*> Environnement::Voisinage(int x, int y){ //Donnent les cases a
 		Voisins.push_back(&(grille[x-1][(y+1)%hauteur]));
 		Voisins.push_back(&(grille[x-1][y%hauteur]));
 	}
-	if (x == 0 and y == 0){
+	if (x == 0 && y == 0){
 		Voisins.push_back(&(grille[largeur-1][hauteur-1]));
 	} 
 	else {
 		Voisins.push_back(&(grille[x-1][y-1]));
 	}
+	
+	unsigned int compteur;
+	for(unsigned int i = 0; i < Voisins.size(); i++){
+		if (&Voisins[i] == 0x00000000) compteur++;
+	}
+	if(compteur == Voisins.size()) return std::vector<Case*>();
+	
 	return Voisins;
 }
 
 
+Case* Environnement::Best_cell(std::vector<Case*> voisins){ //Retourne la case contenant la cellule avec la plus haute fitness parmi un vecteur de cases
+	unsigned int i = 0;  
+	if(voisins.size() == 0) return nullptr;
+	while ((voisins[i]->test_cellule() == 0) && (i < voisins.size())) {
+		i++;
+	}
 
-Case* Environnement::Best_fitness(std::vector<Case*> voisins){ //Retourne la case contenant la cellule avec la plus haute fitness parmi un vecteur de cases
-	float max = 0;
-	unsigned int indmax = 0;
-	unsigned int i;
-	for(i =0; i < voisins.size(); i++){
-		if((voisins[i]->test_cellule() == 1) && (voisins[i]->get_cellule()->get_fitness() > max)){
-			max = voisins[i]->get_cellule()->get_fitness();
-			indmax = i;
-		}
+	if (i == voisins.size()){
+		return nullptr;
+	}
+	
+	float fitmax = voisins[i]->get_cellule()->get_fitness();
+	unsigned int indmax = i;
+	
+	for (unsigned int i = 0; i < voisins.size()-1; i++){
+		if (voisins[i]->test_cellule() != false){
+			if (voisins[i]->get_cellule()->get_fitness() > fitmax){
+				fitmax = voisins[i]->get_cellule()->get_fitness();
+				indmax = i ;
+			}
+		}	
 	}
 	return voisins[indmax];
-	
 }
-	
+
 
 
 
@@ -312,30 +333,31 @@ void Environnement::Competition(){
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   shuffle (gaps.begin(), gaps.end(), std::default_random_engine(seed));
   
-  for(unsigned int i = 0; i < gaps.size() ; i++){
-		//CONDITION SUR POINTEUR NULL SANS DOUTE
-		
-		Best_fitness(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->set_phenotypeA(Best_fitness(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->phenotype_A() / 2); //On divise les concentration de la cellule par 2
-		Best_fitness(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->set_phenotypeB(Best_fitness(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->phenotype_B() / 2);
-		Best_fitness(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->set_phenotypeC(Best_fitness(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->phenotype_C() / 2);
+for(unsigned int i = 0; i < gaps.size() ; i++){
+	//CONDITION SUR POINTEUR NULL SANS DOUTE
+			Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->set_phenotypeA(Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->phenotype_A() / 2); //On divise les concentration de la cellule par 2
+			Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->set_phenotypeB(Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->phenotype_B() / 2);
+			Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->set_phenotypeC(Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->phenotype_C() / 2);
 
-		if (Best_fitness(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->type() == 'a' ){
-			CellA* divise = new CellA(*Best_fitness(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule());
-			gaps[i]->set_cellule(divise);
-		}
-		else {
-			CellB* divise = new CellB(*Best_fitness(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule());
-			gaps[i]->set_cellule(divise); 
+			if ( Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule()->type() == 'a' ){
+				CellA* divise = new CellA(*Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule());
+				gaps[i]->set_cellule(divise);
+			}
+			else {
+				CellB* divise = new CellB(*Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y()))->get_cellule());
+				gaps[i]->set_cellule(divise); 
 		} 
-	} 
-  
-}	
+	}
+}
+	
+
 
 
 void Environnement::Run(){
 	Affichagrille();
 	int pas = 0;
 	while(pas<10000){
+		Diffusion(0.1);
 		for(int j = 0 ; j < hauteur; j++){
 			for(int i = 0 ; i < largeur ; i++){
 				if(grille[i][j].test_cellule() == true){
@@ -343,13 +365,12 @@ void Environnement::Run(){
 				}
 			}
 		}
-		Diffusion(0.1);
 		cout <<"Pas : " << pas << " " << endl;
 		Competition();
-		metabol_all();
+		//metabol_all();
 		pas++;
-		Affichagrille();
 	}
+		Affichagrille();
 }
 
 

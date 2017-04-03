@@ -45,7 +45,7 @@ public:
 //==============================
 
 	std::vector<Case*> Voisinage(int x, int y);
-	Case* Best_fitness(std::vector<Case*> voisins);
+	Case* Best_cell(std::vector<Case*> voisins);
 	void Maj_fitness();
 	void Diffusion(int D); //Diffusion des concentrations
 	void Reinitialisation(); //Reinitialise la grille
