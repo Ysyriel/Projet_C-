@@ -8,6 +8,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+
 //==============================
 //    DEFINITION STATIC ATTRIBUTES
 //==============================
@@ -18,7 +19,7 @@ using std::endl;
 CellA::CellA(){
   genotype = 'a';
   phenotype[0]=0;
-  phenotype[1]=5;
+  phenotype[1]=0;
   phenotype[2]=0;
   fitness = phenotype[1];
 }
@@ -43,8 +44,7 @@ CellA::~CellA(){
 //==============================
 
 void CellA::metabol_in(float R, float dt, float conc_out){
-	float Aout = conc_out * R;
-	phenotype[0] = phenotype[0] + dt * (Aout - phenotype[0] * R);
+	phenotype[0] = phenotype[0] + dt * (conc_out * R - phenotype[0] * R);
 	phenotype[1] = phenotype[1] + dt * (phenotype[0] * R);
 }
 

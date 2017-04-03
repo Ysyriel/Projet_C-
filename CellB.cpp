@@ -8,6 +8,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+
 //==============================
 //    DEFINITION STATIC ATTRIBUTES
 //==============================
@@ -19,7 +20,7 @@ CellB::CellB(){
   genotype = 'b';
   phenotype[0]=0;
   phenotype[1]=0;
-  phenotype[2]=5;
+  phenotype[2]=0;
   fitness = phenotype[2];
 }
 
@@ -43,8 +44,8 @@ CellB::~CellB(){
 //==============================
 
 void CellB::metabol_in(float R, float dt, float conc_out){
-	phenotype[1] = phenotype[1] + dt * (conc_out * R - phenotype[1] * R);
 	phenotype[2] = phenotype[2] + dt * (phenotype[1] * R);
+	phenotype[1] = phenotype[1] + dt * (conc_out * R - phenotype[1] * R);
 }
 
 void CellB::maj_fitness(float fit_min){

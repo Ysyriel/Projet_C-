@@ -11,7 +11,8 @@
  * @class Environnement
  * @brief Creates an Environnement
  */
-
+ 
+ 
 class Environnement
 {
 public:
@@ -47,13 +48,14 @@ public:
 	std::vector<Case*> Voisinage(int x, int y);
 	Case* Best_cell(std::vector<Case*> voisins);
 	void Maj_fitness();
-	void Diffusion(int D); //Diffusion des concentrations
+	void Diffusion(float D); //Diffusion des concentrations
 	void Reinitialisation(); //Reinitialise la grille
 	void Competition();
 	void Affichagrille();
 	void metabol_all();
 	void Affichconc();
-	void Run();
+	void Affichconc_cells();
+	void Run(int T);
 
 protected:
 //==============================

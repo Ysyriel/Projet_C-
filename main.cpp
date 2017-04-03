@@ -10,6 +10,7 @@ using std::cin;
 using std::endl;
 
 
+
 #include "CellA.h"
 #include "CellB.h"
 #include "Case.h"
@@ -31,13 +32,13 @@ int main()
 	
 	//Environnement Test(12,12,20,1);
 	//Test.Run();
-	Environnement Test(32,32,20,0.001);
-	Test.Run();
+	Environnement Test(32,32,25,0.001);
+	Test.Run(2000);
 
 	//Case* Test = Envir.Best_cell(Envir.Voisinage(2,2));
   
 	//Environnement Envir;
-	//Envir.Run();
+	//Envir.Run(2000);
  
   return EXIT_SUCCESS;
 }

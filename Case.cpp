@@ -38,6 +38,7 @@ Case::~Case(){
 //==============================
 
 
+
 void Case::Mutation(float p){ //Mute la cellule contenue dans la case avec une probabilité p
 	srand (time (NULL));
 	float r = gener_aleafloat(0,1);
@@ -69,9 +70,9 @@ void Case::Mutation(float p){ //Mute la cellule contenue dans la case avec une p
 void Case::mort(float p){
 	float r = gener_aleafloat(0,1); 
 	if (r<p){
-		set_concA(conc_A()+cellule -> phenotype_A());
-		set_concB(conc_B()+cellule -> phenotype_B());
-		set_concC(conc_C()+cellule -> phenotype_C());
+		set_concA(conc_A()+cellule->phenotype_A());
+		set_concB(conc_B()+cellule->phenotype_B());
+		set_concC(conc_C()+cellule->phenotype_C());
 		delete cellule;
 		cellule = nullptr; 
 	}
@@ -80,12 +81,12 @@ void Case::mort(float p){
 void Case::metabolisme(float R, float dt){ //Metabolisme des cellules
 	if (cellule != nullptr){
 		if (cellule->type() == 'a'){
-			cellule->metabol_in(R, dt, conc_ext[0]);
 			set_concA(conc_ext[0] + dt * (-conc_ext[0] * R));
+			cellule->metabol_in(R, dt, conc_ext[0]);
 		} 
 		if (cellule->type() == 'b'){
-			cellule->metabol_in(R, dt, conc_ext[1]);
 			set_concB(conc_ext[1] + dt * (-conc_ext[1] * R));
+			cellule->metabol_in(R, dt, conc_ext[1]);
 		}
 		cellule->maj_fitness(0.001);
 	}

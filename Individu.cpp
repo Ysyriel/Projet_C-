@@ -18,6 +18,7 @@ using std::endl;
 //    DESTRUCTOR
 //==============================
 
+
 Individu::~Individu(){
 
 }
