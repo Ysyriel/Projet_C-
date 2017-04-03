@@ -165,8 +165,6 @@ void Environnement::Maj_fitness(){
 }
 
 
-
-//A CORRIGER
 void Environnement::Diffusion(float D){
 	
 	for (int x = 0 ; x < largeur ; x++){
@@ -187,6 +185,7 @@ void Environnement::Diffusion(float D){
 						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[(x+i)%largeur][hauteur-1].conc_C());
 					}
 					else if (((y+i)%hauteur == -1) and ((x+i)%largeur == -1)){
+
 						grille[x][y].set_concA(grille[x][y].conc_A() + D*grille[largeur-1][hauteur-1].conc_A());
 						grille[x][y].set_concB(grille[x][y].conc_B() + D*grille[largeur-1][hauteur-1].conc_B());
 						grille[x][y].set_concC(grille[x][y].conc_C() + D*grille[largeur-1][hauteur-1].conc_C());
@@ -293,19 +292,23 @@ std::vector<Case*> Environnement::Voisinage(int x, int y){ //Donnent les cases a
 	else {
 		Voisins.push_back(&(grille[x-1][y-1]));
 	}
+	
+	unsigned int compteur;
+	for(unsigned int i = 0; i < Voisins.size(); i++){
+		if (&Voisins[i] == 0x00000000) compteur++;
+	}
+	if(compteur == Voisins.size()) return std::vector<Case*>();
+	
 	return Voisins;
 }
 
 
 Case* Environnement::Best_cell(std::vector<Case*> voisins){ //Retourne la case contenant la cellule avec la plus haute fitness parmi un vecteur de cases
-	unsigned int i = 0; 
-	/*for (int k=0; k<voisins.size(); k++){
-		if(voisins[k] == nullptr) cout << "je te troll" << endl;
-		else cout << voisins[k] << endl;
-	}
-	cout << voisins.size() << endl;  */
+
+	unsigned int i = 0;  
+	if(voisins.size() == 0) return nullptr;
 	while ((voisins[i]->test_cellule() == 0) && (i < voisins.size())) {
-			i++;
+		i++;
 	}
 
 	if (i == voisins.size()){
@@ -327,6 +330,8 @@ Case* Environnement::Best_cell(std::vector<Case*> voisins){ //Retourne la case c
 }
 
 
+
+
 void Environnement::Competition(){
 	std::vector<Case*> gaps;
 	for (int j = 0 ; j < get_hauteur() ; j++){   //Remplit un vecteur de cases vides
@@ -338,8 +343,6 @@ void Environnement::Competition(){
 	}	
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   shuffle (gaps.begin(), gaps.end(), std::default_random_engine(seed));
-  
-  
   
   for(unsigned int i = 0; i < gaps.size() ; i++){
 		if (Best_cell(Voisinage(gaps[i]->get_x(), gaps[i]->get_y())) != nullptr){
@@ -357,15 +360,16 @@ void Environnement::Competition(){
 					gaps[i]->set_cellule(divise); 
 				}
 			}
+
 		} 
-	} 
-  
-}	
+	}
+}
+	
+
 
 
 void Environnement::Run(int T){
 	Affichagrille();
-	Affichconc();
 	int pas = 0;
 	while(pas<1000){
 		if ((pas%T) == 0){
@@ -376,7 +380,6 @@ void Environnement::Run(int T){
 			for(int i = 0 ; i < largeur ; i++){
 				if(grille[i][j].test_cellule() == true){
 					grille[i][j].mort(0.02);
-					
 				}
 			}
 		}
@@ -389,9 +392,9 @@ void Environnement::Run(int T){
 	cout <<"Cells : "  << " " << endl;
 	Affichconc_cells();
 	cout <<"Grille" << " " << endl;
-	//Affichconc();
 	Affichagrille();
 }
+
 
 
 //==============================

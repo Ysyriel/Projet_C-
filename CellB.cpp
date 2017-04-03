@@ -35,9 +35,6 @@ CellB::CellB(const Individu& cellule){  //Constructeur par copie
 //==============================
 //    DESTRUCTOR
 //==============================
-CellB::~CellB(){
-
-}
 
 //==============================
 //    PUBLIC METHODS

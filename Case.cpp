@@ -32,7 +32,6 @@ Case::Case()
 Case::~Case(){
 	delete cellule;
 }
-
 //==============================
 //    PUBLIC METHODS
 //==============================
