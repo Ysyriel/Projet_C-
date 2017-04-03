@@ -164,11 +164,7 @@ void Environnement::Maj_fitness(){
 }
 
 
-
-//A CORRIGER
 void Environnement::Diffusion(int D){
-	cout << D;
-	/*
 	for (int x = 0 ; x < largeur ; x++){
 		for (int y = 0 ; y < hauteur ; y++){
 			float A = grille[x][y].conc_A();
@@ -203,12 +199,6 @@ void Environnement::Diffusion(int D){
 			grille[x][y].set_concC(grille[x][y].conc_C() - (9 * D * C));
 		}
 	}
-*/
-
-//Tentative de Correction : 
-
-
-
 }
 
 
@@ -344,7 +334,6 @@ void Environnement::Competition(){
 
 void Environnement::Run(){
 	Affichagrille();
-	Affichconc();
 	int pas = 0;
 	while(pas<10000){
 		for(int j = 0 ; j < hauteur; j++){
@@ -354,13 +343,12 @@ void Environnement::Run(){
 				}
 			}
 		}
-		//Diffusion(0.1);
+		Diffusion(0.1);
 		cout <<"Pas : " << pas << " " << endl;
 		Competition();
-		//metabol_all();
+		metabol_all();
 		pas++;
 		Affichagrille();
-		Affichconc();
 	}
 }
 

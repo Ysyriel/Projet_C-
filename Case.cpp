@@ -78,15 +78,17 @@ void Case::mort(float p){
 }
 
 void Case::metabolisme(float R, float dt){ //Metabolisme des cellules
-	if (cellule->type() == 'a'){
-		cellule->metabol_in(R, dt, conc_ext[0]);
-		set_concA(conc_ext[0] + dt * (-conc_ext[0] * R));
-	} 
-	if (cellule->type() == 'b'){
-		cellule->metabol_in(R, dt, conc_ext[1]);
-		set_concB(conc_ext[1] + dt * (-conc_ext[1] * R));
+	if (cellule != nullptr){
+		if (cellule->type() == 'a'){
+			cellule->metabol_in(R, dt, conc_ext[0]);
+			set_concA(conc_ext[0] + dt * (-conc_ext[0] * R));
+		} 
+		if (cellule->type() == 'b'){
+			cellule->metabol_in(R, dt, conc_ext[1]);
+			set_concB(conc_ext[1] + dt * (-conc_ext[1] * R));
+		}
+		cellule->maj_fitness(0.001);
 	}
-	
 }
 
 bool Case::test_cellule(){

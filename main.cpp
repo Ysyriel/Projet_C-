@@ -31,7 +31,7 @@ int main()
 	
 	//Environnement Test(12,12,20,1);
 	//Test.Run();
-	Environnement Test(32,32,0,100);
+	Environnement Test(32,32,20,0.001);
 	Test.Run();
 
 	//Case* Test = Envir.Best_cell(Envir.Voisinage(2,2));
